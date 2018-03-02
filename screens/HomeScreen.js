@@ -9,46 +9,56 @@ import {
   View,
   TextInput,
   ImageBackground,
+  StatusBar
 } from 'react-native';
 import { WebBrowser, Font } from 'expo';
 import { MonoText } from '../components/StyledText';
 import { Ionicons } from '@expo/vector-icons';
+import { Constants } from 'expo';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
-
+  componentWillMount() {
+    StatusBar.setHidden(true);
+  }
   render() {
     return (
-      <ImageBackground source={require('../assets/images/congruent_pentagon.png')} style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Text style={styles.headerText}>Your Shopping Lists</Text>
+      
+      <ImageBackground source={require('../assets/images/blurry2.png')} style={styles.container}>
+  {/* Status Bar */}
+        <View>
+          <View style={styles.statusBar}>
+            <Text style={styles.headerText}>Shopping Lists</Text>
           </View>
+        </View>
+  {/* Main Container */}
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={{alignItems: 'center'}}>
-            {/* <View style={{backgroundColor: 'grey', height: 1, width: 325, marginBottom: 20}} /> */}
+  {/* Display Boxes */}
             <View style={styles.listBox}>
-              <Text style={styles.listBoxHead}>Walmart Shopping List</Text>
+              <Text style={styles.listBoxHead}>Walmart</Text>
               <Text style={styles.listBoxEdit}>View/ Edit This List</Text>
             </View>
             <View style={styles.listBox}>
-              <Text style={styles.listBoxHead}>Walmart Shopping List</Text>
+              <Text style={styles.listBoxHead}>Target</Text>
               <Text style={styles.listBoxEdit}>View/ Edit This List</Text>
             </View>
             <View style={styles.listBox}>
-              <Text style={styles.listBoxHead}>Walmart Shopping List</Text>
+              <Text style={styles.listBoxHead}>Costco</Text>
               <Text style={styles.listBoxEdit}>View/ Edit This List</Text>
             </View>
+  {/* Add New Item Box */}
             <View style={styles.listBoxAdd}>
-              <Text style={styles.listBoxHead}>
-                Add A New List <Ionicons name={'md-add-circle'} size={20} />
+              <Text style={styles.listBoxAddText}>
+                <Ionicons name={'md-add-circle'} size={20} /> Add A New List
               </Text>
             </View>
+
           </View>
         </ScrollView>
       </ImageBackground>
-    // </ImageBackground>
     );
   }
 
@@ -87,136 +97,93 @@ export default class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  statusBar: {
+    //borderBottomWidth: 2,
+    borderColor: 'white',
+    alignItems: 'center',
+    padding: 20,
+    //marginBottom: 20,
+    backgroundColor: '#383f58',
+    height: Constants.statusBarHeight,
+  },
+  headerText: {  
+    textAlign: 'center',
+    color: 'white',
+    paddingTop: 5,
+    fontSize: 20, 
+    fontFamily: 'averia-serif',
+    position: 'absolute',
+  },
   container: {
     flex: 1,
   },
   listBox: {
+    borderColor: '#43ebf3',
+    borderWidth: 1,
     width: 350, 
     height: 85, 
-    backgroundColor: '#7374a0', 
-    marginBottom: 10, 
+    //backgroundColor: '#a3aab3', 
+    marginTop: 10, 
     padding: 15, 
     borderRadius: 50,
   },
   listBoxAdd: {
-    width: 205, 
+    borderColor: 'black',
+    borderWidth: 1,
+    width: 220, 
     height: 50, 
-    backgroundColor: '#97ea9d', 
-    marginBottom: 10, 
-    paddingBottom: 10,
-    paddingTop: 10, 
+    backgroundColor: '#b3efaf', 
+    // paddingTop: 7, 
+    // paddingBottom: 11,
+    marginTop: 10, 
     borderRadius: 50,
   },
+  listBoxAddText: {
+    fontFamily: 'averia-serif',
+    fontSize: 23,
+    color: 'black', 
+    marginTop: 10,
+    // fontWeight: "bold", 
+    textAlign: "center",
+  },
   listBoxHead: {
-    fontFamily: 'aldrich-regular',
-    fontSize: 20, 
-    fontWeight: "bold", 
+    fontFamily: 'averia-serif',
+    fontSize: 30,
+    color: 'white', 
+    // fontWeight: "bold", 
     textAlign: "center",
   },
   listBoxEdit: {
-    fontFamily: 'aldrich-regular',
+    fontFamily: 'averia-serif',
     color: "white", 
     textAlign: "center", 
-    marginTop: 10
+    marginTop: 0,
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    padding: 20,
-    marginBottom: 20,
-  },
-  headerText: {
-    width: 375,
-    textAlign: 'center',
-    paddingTop: 5,
-    fontSize: 20, 
-    fontFamily: 'aldrich-regular',
-    height: 40,
-    backgroundColor: '#afafb1',
-    position: 'absolute',
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: 'blue',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
-  textInput: {
-    fontSize: 14,
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    textAlign: 'center'
-  },
+  // tabBarInfoContainer: {
+  //   position: 'absolute',
+  //   bottom: 0,
+  //   left: 0,
+  //   right: 0,
+  //   ...Platform.select({
+  //     ios: {
+  //       shadowColor: 'black',
+  //       shadowOffset: { height: -3 },
+  //       shadowOpacity: 0.1,
+  //       shadowRadius: 3,
+  //     },
+  //     android: {
+  //       elevation: 20,
+  //     },
+  //   }),
+  //   alignItems: 'center',
+  //   backgroundColor: 'blue',
+  //   paddingVertical: 20,
+  // },
+  // tabBarInfoText: {
+  //   fontSize: 17,
+  //   color: 'rgba(96,100,109, 1)',
+  //   textAlign: 'center',
+  // }, 
   backgroundImage: {
     flex: 1,
     width: null,

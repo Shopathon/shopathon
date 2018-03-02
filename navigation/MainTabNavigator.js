@@ -40,7 +40,7 @@ export default TabNavigator(
                     name={iconName}
                     size={28}
                     style={{ marginBottom: -3 }}
-                    //color={"white"}
+                    color={"white"}
                   />
                 );
             break;
@@ -52,7 +52,7 @@ export default TabNavigator(
                   name={iconName}
                   size={28}
                   style={{ marginBottom: -3 }}
-                  //color={'white'}
+                  color={'white'}
                 />
               );
         }
@@ -72,16 +72,16 @@ export default TabNavigator(
     swipeEnabled: true,
     initialRouteName: 'Home',
     tabBarOptions: {
-      activeTintColor: 'black',
-      activeBackgroundColor: '#d5f5da',
-      inactiveTintColor: 'black',
-      inactiveBackgroundColor: '#e9f7eb',
+      activeTintColor: 'white',
+      activeBackgroundColor: '#383f58',
+      inactiveTintColor: 'white',
+      inactiveBackgroundColor: '#655c61',
       labelStyle: {
         fontSize: 12,
       },
-      // style: {
-      //   backgroundColor: 'skyblue',
-      // },
+      style: {
+        borderTopWidth: 0,
+      },
     }
   }
 );

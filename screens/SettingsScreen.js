@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput, StyleSheet, } from 'react-native';
+import { Text, View, TextInput, StyleSheet, ImageBackground} from 'react-native';
 import { ExpoConfigView } from '@expo/samples';
 
 export default class SettingsScreen extends React.Component {
@@ -10,10 +10,24 @@ export default class SettingsScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Hello</Text>
-        <TextInput style={styles.textInput} placeholder="Type here to translate!"/>
-      </View>
+      <ImageBackground source={require('../assets/images/blurry3.png')} style={styles.container}>
+        
+          <Text>Hello</Text>
+          <View style={styles.inputContainer}>
+            <TextInput style={styles.textInput} placeholder="Input Here"/>
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput style={styles.textInput} placeholder="Input Here"/>
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput style={styles.textInput} placeholder="Input Here"/>
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput style={styles.textInput} placeholder="Input Here"/>
+          </View>
+          
+        
+      </ImageBackground>
     );
   }
 }
@@ -24,13 +38,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  textInput: {
-    fontSize: 14,
+  inputContainer: {
     height: 40,
-    borderRadius: 10,
-    backgroundColor: 'skyblue',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    borderRadius: 30,
+    paddingTop: 5,
+    paddingRight: 10,
+    paddingLeft: 10,
+    marginTop: 5,
+    backgroundColor: 'white', 
+  },
+  textInput: {
+    fontSize: 20,
     textAlign: 'center',
+    paddingBottom: 10,
   },
 });

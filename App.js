@@ -40,7 +40,8 @@ export default class App extends React.Component {
         ...Ionicons.font,
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
-        'aldrich-regular': require('./assets/fonts/Aldrich-Regular.ttf'),
+        // 'aldrich-regular': require('./assets/fonts/Aldrich-Regular.ttf'),
+        'averia-serif': require('./assets/fonts/Averia_Serif_Libre/AveriaSerifLibre-Bold.ttf'),
       }),
     ]);
   };
