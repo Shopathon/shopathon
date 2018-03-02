@@ -7,60 +7,58 @@ import {
   Text,
   TouchableOpacity,
   View,
+  TextInput,
+  ImageBackground,
+  StatusBar
 } from 'react-native';
-import { WebBrowser } from 'expo';
-
+import { WebBrowser, Font } from 'expo';
 import { MonoText } from '../components/StyledText';
+import { Ionicons } from '@expo/vector-icons';
+import { Constants } from 'expo';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
-
+  componentWillMount() {
+    StatusBar.setHidden(true);
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
-
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
-          </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
+      
+      <ImageBackground source={require('../assets/images/blurry2.png')} style={styles.container}>
+  {/* Status Bar */}
+        <View>
+          <View style={styles.statusBar}>
+            <Text style={styles.headerText}>Shopping Lists</Text>
           </View>
         </View>
-      </View>
+  {/* Main Container */}
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+          <View style={{alignItems: 'center'}}>
+  {/* Display Boxes */}
+            <View style={styles.listBox}>
+              <Text style={styles.listBoxHead}>Walmart</Text>
+              <Text style={styles.listBoxEdit}>View/ Edit This List</Text>
+            </View>
+            <View style={styles.listBox}>
+              <Text style={styles.listBoxHead}>Target</Text>
+              <Text style={styles.listBoxEdit}>View/ Edit This List</Text>
+            </View>
+            <View style={styles.listBox}>
+              <Text style={styles.listBoxHead}>Costco</Text>
+              <Text style={styles.listBoxEdit}>View/ Edit This List</Text>
+            </View>
+  {/* Add New Item Box */}
+            <View style={styles.listBoxAdd}>
+              <Text style={styles.listBoxAddText}>
+                <Ionicons name={'md-add-circle'} size={20} /> Add A New List
+              </Text>
+            </View>
+
+          </View>
+        </ScrollView>
+      </ImageBackground>
     );
   }
 
@@ -99,90 +97,97 @@ export default class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  statusBar: {
+    //borderBottomWidth: 2,
+    borderColor: 'white',
+    alignItems: 'center',
+    padding: 20,
+    //marginBottom: 20,
+    backgroundColor: '#383f58',
+    height: Constants.statusBarHeight,
+  },
+  headerText: {  
+    textAlign: 'center',
+    color: 'white',
+    paddingTop: 5,
+    fontSize: 20, 
+    fontFamily: 'averia-serif',
+    position: 'absolute',
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
+  listBox: {
+    borderColor: '#43ebf3',
+    borderWidth: 1,
+    width: 350, 
+    height: 85, 
+    //backgroundColor: '#a3aab3', 
+    marginTop: 10, 
+    padding: 15, 
+    borderRadius: 50,
   },
-  contentContainer: {
-    paddingTop: 30,
+  listBoxAdd: {
+    borderColor: 'black',
+    borderWidth: 1,
+    width: 220, 
+    height: 50, 
+    backgroundColor: '#b3efaf', 
+    // paddingTop: 7, 
+    // paddingBottom: 11,
+    marginTop: 10, 
+    borderRadius: 50,
   },
-  welcomeContainer: {
-    alignItems: 'center',
+  listBoxAddText: {
+    fontFamily: 'averia-serif',
+    fontSize: 23,
+    color: 'black', 
     marginTop: 10,
-    marginBottom: 20,
+    // fontWeight: "bold", 
+    textAlign: "center",
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
+  listBoxHead: {
+    fontFamily: 'averia-serif',
+    fontSize: 30,
+    color: 'white', 
+    // fontWeight: "bold", 
+    textAlign: "center",
   },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+  listBoxEdit: {
+    fontFamily: 'averia-serif',
+    color: "white", 
+    textAlign: "center", 
+    marginTop: 0,
   },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
+  // tabBarInfoContainer: {
+  //   position: 'absolute',
+  //   bottom: 0,
+  //   left: 0,
+  //   right: 0,
+  //   ...Platform.select({
+  //     ios: {
+  //       shadowColor: 'black',
+  //       shadowOffset: { height: -3 },
+  //       shadowOpacity: 0.1,
+  //       shadowRadius: 3,
+  //     },
+  //     android: {
+  //       elevation: 20,
+  //     },
+  //   }),
+  //   alignItems: 'center',
+  //   backgroundColor: 'blue',
+  //   paddingVertical: 20,
+  // },
+  // tabBarInfoText: {
+  //   fontSize: 17,
+  //   color: 'rgba(96,100,109, 1)',
+  //   textAlign: 'center',
+  // }, 
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null,
+    
+}
 });
