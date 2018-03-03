@@ -11,6 +11,10 @@ import {
   ImageBackground,
   StatusBar
 } from 'react-native';
+import {
+  Button,
+  Icon,
+} from 'react-native-elements';
 import { WebBrowser, Font } from 'expo';
 import { MonoText } from '../components/StyledText';
 import { Ionicons } from '@expo/vector-icons';
@@ -27,35 +31,90 @@ export default class HomeScreen extends React.Component {
     return (
       
       <ImageBackground source={require('../assets/images/blurry2.png')} style={styles.container}>
-  {/* Status Bar */}
+{/* ------------------------- Status Bar ------------------------- */}
         <View>
           <View style={styles.statusBar}>
             <Text style={styles.headerText}>Shopping Lists</Text>
           </View>
         </View>
-  {/* Main Container */}
+
+{/* ------------------------- Main Container ------------------------- */}
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={{alignItems: 'center'}}>
-  {/* Display Boxes */}
-            <View style={styles.listBox}>
-              <Text style={styles.listBoxHead}>Walmart</Text>
-              <Text style={styles.listBoxEdit}>View/ Edit This List</Text>
+
+{/* ------------------------- Display Boxes ------------------------- */}
+            
+            <View>
+              <Button
+                //onPress={() => this._handleLogin()}
+                buttonStyle={styles.listBox}
+                icon={{name:'shopping-cart', color:'white'}}
+                title={ 
+                  <Text>
+                    <Text style={styles.listBoxHead}>Walmart</Text>
+                    <Text style={styles.listBoxEdit}>  View/ Edit This List</Text>
+                  </Text>
+                }
+              />
             </View>
-            <View style={styles.listBox}>
-              <Text style={styles.listBoxHead}>Target</Text>
-              <Text style={styles.listBoxEdit}>View/ Edit This List</Text>
+            <View>
+              <Button
+                //onPress={() => this._handleLogin()}
+                buttonStyle={styles.listBox}
+                icon={{name:'shopping-cart', color:'white'}}
+                title={ 
+                  <Text>
+                    <Text style={styles.listBoxHead}>Costco</Text>
+                    <Text style={styles.listBoxEdit}>  View/ Edit This List</Text>
+                  </Text>
+                }
+              />
             </View>
-            <View style={styles.listBox}>
-              <Text style={styles.listBoxHead}>Costco</Text>
-              <Text style={styles.listBoxEdit}>View/ Edit This List</Text>
+            <View>
+              <Button
+                //onPress={() => this._handleLogin()}
+                buttonStyle={styles.listBox}
+                icon={{name:'shopping-cart', color:'white'}}
+                title={ 
+                  <Text>
+                    <Text style={styles.listBoxHead}>Target</Text>
+                    <Text style={styles.listBoxEdit}>  View/ Edit This List</Text>
+                </Text>
+                }
+              />
             </View>
-  {/* Add New Item Box */}
-            <View style={styles.listBoxAdd}>
+            <View>
+              <Button
+                //onPress={() => this._handleLogin()}
+                buttonStyle={styles.listBox}
+                icon={{name:'shopping-cart', color:'white'}}
+                title={ 
+                  <Text>
+                    <Text style={styles.listBoxHead}>Smiths</Text>
+                    <Text style={styles.listBoxEdit}>  View/ Edit This List</Text>
+                </Text>
+                }
+              />
+            </View>
+
+{/* ------------------------- Add New Item Box ------------------------- */}
+            {/* <View style={styles.listBoxAdd}>
               <Text style={styles.listBoxAddText}>
                 <Ionicons name={'md-add-circle'} size={20} /> Add A New List
               </Text>
+            </View> */}
+            <View>
+              <Button
+                //onPress={() => this._handleLogin()}
+                buttonStyle={styles.newListButton}
+                title={ 
+                  <Text style={styles.listBoxAddText}>
+                    <Ionicons name={'md-add-circle'} size={20} /> Add A New List
+                  </Text>
+                }
+              />
             </View>
-
+            
           </View>
         </ScrollView>
       </ImageBackground>
@@ -109,7 +168,7 @@ const styles = StyleSheet.create({
   headerText: {  
     textAlign: 'center',
     color: 'white',
-    paddingTop: 5,
+    paddingTop: 8,
     fontSize: 20, 
     fontFamily: 'averia-serif',
     position: 'absolute',
@@ -121,30 +180,11 @@ const styles = StyleSheet.create({
     borderColor: '#43ebf3',
     borderWidth: 1,
     width: 350, 
-    height: 85, 
-    //backgroundColor: '#a3aab3', 
+    height: 70, 
+    backgroundColor: null, 
     marginTop: 10, 
     padding: 15, 
     borderRadius: 50,
-  },
-  listBoxAdd: {
-    borderColor: 'black',
-    borderWidth: 1,
-    width: 220, 
-    height: 50, 
-    backgroundColor: '#b3efaf', 
-    // paddingTop: 7, 
-    // paddingBottom: 11,
-    marginTop: 10, 
-    borderRadius: 50,
-  },
-  listBoxAddText: {
-    fontFamily: 'averia-serif',
-    fontSize: 23,
-    color: 'black', 
-    marginTop: 10,
-    // fontWeight: "bold", 
-    textAlign: "center",
   },
   listBoxHead: {
     fontFamily: 'averia-serif',
@@ -155,9 +195,27 @@ const styles = StyleSheet.create({
   },
   listBoxEdit: {
     fontFamily: 'averia-serif',
-    color: "white", 
+    color: "#43ebf3", 
     textAlign: "center", 
-    marginTop: 0,
+  },
+  newListButton: {
+    borderColor: '#229426',
+    borderWidth: 1,
+    width: 220, 
+    height: 50, 
+    backgroundColor: '#27bd2c', 
+    // paddingTop: 7, 
+    // paddingBottom: 11,
+    marginTop: 10, 
+    borderRadius: 50,
+  }, 
+  listBoxAddText: {
+    fontFamily: 'averia-serif',
+    fontSize: 18,
+    color: 'white', 
+    marginTop: 10,
+    // fontWeight: "bold", 
+    textAlign: "center",
   },
   // tabBarInfoContainer: {
   //   position: 'absolute',

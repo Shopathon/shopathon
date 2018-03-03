@@ -6,14 +6,14 @@ import { TabNavigator, TabBarBottom } from 'react-navigation';
 import Colors from '../constants/Colors';
 
 import HomeScreen from '../screens/HomeScreen';
-//import LinksScreen from '../screens/LinksScreen';
+import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 export default TabNavigator(
   {
-    // Links: {
-    //   screen: LinksScreen,
-    // },
+    Links: {
+      screen: LinksScreen,
+    },
     Home: {
       screen: HomeScreen,
     },
@@ -27,9 +27,19 @@ export default TabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         switch (routeName) {
-          // case 'Links':
-          //   iconName = Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link';
-          //   break;
+          case 'Links':
+            iconName = Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link';
+            return (
+              <Ionicons
+              name={iconName}
+              size={28}
+              style={{ marginBottom: -3 }}
+              color={'white'}
+              />
+            );
+            break;
+
+//-----------------------------Home tab in tab bar-----------------------------
           case 'Home':
             iconName =
               Platform.OS === 'ios'
@@ -44,6 +54,7 @@ export default TabNavigator(
                   />
                 );
             break;
+//-----------------------------Settings tab in tab bar-----------------------------
           case 'Settings':
             iconName =
               Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-add-circle';
@@ -66,11 +77,13 @@ export default TabNavigator(
         // );
       },
     }),
+  
+//-----------------------------Tab bar styling-----------------------------
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     animationEnabled: false,
     swipeEnabled: true,
-    initialRouteName: 'Home',
+    initialRouteName: 'Links',
     tabBarOptions: {
       activeTintColor: 'white',
       activeBackgroundColor: '#383f58',
