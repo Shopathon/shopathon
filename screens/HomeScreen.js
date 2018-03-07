@@ -25,12 +25,12 @@ export default class HomeScreen extends React.Component {
     header: null,
   };
   componentWillMount() {
-    StatusBar.setHidden(true);
+    StatusBar.setHidden(false);
   }
   render() {
     return (
       
-      <ImageBackground source={require('../assets/images/blurry2.png')} style={styles.container}>
+      <ImageBackground source={require('../assets/images/blurry5.png')} style={styles.backgroundImage}>
 {/* ------------------------- Status Bar ------------------------- */}
         <View>
           <View style={styles.statusBar}>
@@ -44,7 +44,7 @@ export default class HomeScreen extends React.Component {
 
 {/* ------------------------- Display Boxes ------------------------- */}
             
-            <View>
+            {/* <View> */}
               <Button
                 //onPress={() => this._handleLogin()}
                 buttonStyle={styles.listBox}
@@ -56,8 +56,8 @@ export default class HomeScreen extends React.Component {
                   </Text>
                 }
               />
-            </View>
-            <View>
+            {/* </View> */}
+            {/* <View> */}
               <Button
                 //onPress={() => this._handleLogin()}
                 buttonStyle={styles.listBox}
@@ -69,8 +69,8 @@ export default class HomeScreen extends React.Component {
                   </Text>
                 }
               />
-            </View>
-            <View>
+            {/* </View> */}
+            {/* <View> */}
               <Button
                 //onPress={() => this._handleLogin()}
                 buttonStyle={styles.listBox}
@@ -82,8 +82,8 @@ export default class HomeScreen extends React.Component {
                 </Text>
                 }
               />
-            </View>
-            <View>
+            {/* </View> */}
+            {/* <View> */}
               <Button
                 //onPress={() => this._handleLogin()}
                 buttonStyle={styles.listBox}
@@ -95,7 +95,7 @@ export default class HomeScreen extends React.Component {
                 </Text>
                 }
               />
-            </View>
+             {/* </View> */}
 
 {/* ------------------------- Add New Item Box ------------------------- */}
             {/* <View style={styles.listBoxAdd}>
@@ -160,15 +160,16 @@ const styles = StyleSheet.create({
     //borderBottomWidth: 2,
     borderColor: 'white',
     alignItems: 'center',
-    padding: 20,
-    //marginBottom: 20,
-    backgroundColor: '#383f58',
-    height: Constants.statusBarHeight,
+    paddingTop: 20,
+    marginBottom: 20,
+    backgroundColor: '#18454f',
+    height: 60,
+    //height: Constants.statusBarHeight,
   },
   headerText: {  
     textAlign: 'center',
     color: 'white',
-    paddingTop: 8,
+    paddingTop: 30,
     fontSize: 20, 
     fontFamily: 'averia-serif',
     position: 'absolute',
@@ -177,11 +178,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listBox: {
-    borderColor: '#43ebf3',
+    borderColor: 'white',
     borderWidth: 1,
-    width: 350, 
+    width: 340, 
     height: 70, 
-    backgroundColor: null, 
+    backgroundColor: '#ffffff40', 
     marginTop: 10, 
     padding: 15, 
     borderRadius: 50,
@@ -199,11 +200,9 @@ const styles = StyleSheet.create({
     textAlign: "center", 
   },
   newListButton: {
-    borderColor: '#229426',
-    borderWidth: 1,
     width: 220, 
     height: 50, 
-    backgroundColor: '#27bd2c', 
+    backgroundColor: '#07f50f50', 
     // paddingTop: 7, 
     // paddingBottom: 11,
     marginTop: 10, 

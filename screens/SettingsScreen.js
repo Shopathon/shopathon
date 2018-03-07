@@ -64,9 +64,9 @@ import {
   TouchableOpacity,
   View,
   ImageBackground,
+  StatusBar
 } from 'react-native';
-import { WebBrowser } from 'expo';
-
+import { WebBrowser, Constants } from 'expo';
 import { MonoText } from '../components/StyledText';
 
 import {
@@ -81,6 +81,9 @@ export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+  componentWillMount() {
+    StatusBar.setHidden(false);
+  }
 
   constructor(props) {
     super(props);
@@ -118,8 +121,15 @@ export default class SettingsScreen extends React.Component {
 
   render() {
     return (
-      <ImageBackground source={require('../assets/images/blurry3.png')} style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+      <ImageBackground source={require('../assets/images/blurry4.png')} style={styles.backgroundImage}>
+        
+        <View>
+          <View style={styles.statusBar}>
+            <Text style={styles.headerText}>App Login</Text>
+          </View>
+        </View>
+
+        <ScrollView style={styles.container}>
           {/* <View style={styles.welcomeContainer}>
             <Image
               source={
@@ -131,55 +141,74 @@ export default class SettingsScreen extends React.Component {
             />
           </View> */}
 
-          <View style={styles.getStartedContainer}>
-
-            <Text style={styles.getStartedText}>Coupon App Login</Text>
+          <View style={styles.mainContainer}>
             
 {/* ----------------------- Username input ----------------------- */}
-            <FormLabel labelStyle={styles.formTitle}>Username</FormLabel>
-            <FormInput  
-              containerStyle={styles.containerStyle}
-              inputStyle={styles.inputStyle} 
-              value={this.state.username}  
-              onChangeText={(text) => this.setState({ username: text })}
-            /> 
-            {/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
+            <View style={styles.testContainer}>
+              
+              <View style={styles.rowForIcon}>
+                <Icon name='person' color='white'/>
+                <FormLabel labelStyle={styles.formTitle}>Username</FormLabel>
+              </View>
+              <FormInput  
+                containerStyle={styles.containerStyle}
+                inputStyle={styles.inputStyle} 
+                value={this.state.username}  
+                onChangeText={(text) => this.setState({ username: text })}
+              /> 
+              {/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
+            </View>
 
 {/* ----------------------- Password input ----------------------- */}
-            <FormLabel labelStyle={styles.formTitle}>Password</FormLabel>
-            <FormInput 
-              secureTextEntry={true} 
-              containerStyle={styles.containerStyle}
-              inputStyle={styles.inputStyle} 
-              value={this.state.password} 
-              onChangeText={(text) => this.setState({ password: text })} 
-            />
-            {/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
+            <View style={styles.testContainer}>
+              <View style={styles.rowForIcon}>
+                <Icon name='lock' color='white'/>
+                <FormLabel labelStyle={styles.formTitle}>Password</FormLabel>
+              </View>
+              <FormInput 
+                secureTextEntry={true} 
+                containerStyle={styles.containerStyle}
+                inputStyle={styles.inputStyle} 
+                value={this.state.password} 
+                onChangeText={(text) => this.setState({ password: text })} 
+              />
+              {/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
+            </View>
 
 {/* ----------------------- Password input ----------------------- */}
-            <FormLabel labelStyle={styles.formTitle}>Confirm Password</FormLabel>
-            <FormInput 
-              secureTextEntry={true} 
-              containerStyle={styles.containerStyle}
-              inputStyle={styles.inputStyle}
-              value={this.state.passwordConfirm} 
-              onChangeText={(text) => this.setState({ passwordConfirm: text })} 
-            />
-            {/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
+            <View style={styles.testContainer}>
+              <View style={styles.rowForIcon}>
+                <Icon name='lock' color='white'/>
+                <FormLabel labelStyle={styles.formTitle}>Confirm Password</FormLabel>
+              </View>
+              <FormInput 
+                secureTextEntry={true} 
+                containerStyle={styles.containerStyle}
+                inputStyle={styles.inputStyle}
+                value={this.state.passwordConfirm} 
+                onChangeText={(text) => this.setState({ passwordConfirm: text })} 
+              />
+              {/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
+            </View>
 
 {/* ----------------------- Email address input ----------------------- */}
-            <FormLabel labelStyle={styles.formTitle}>Email Address</FormLabel>
-            <FormInput 
-              value={this.state.email} 
-              containerStyle={styles.containerStyle}
-              inputStyle={styles.inputStyle}
-              onChangeText={(text) => this.setState({ email: text })} 
-            />
-            {/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
+            <View style={styles.testContainer}>
+              <View style={styles.rowForIcon}>
+                <Icon name='mail' color='white'/>
+                <FormLabel labelStyle={styles.formTitle}>Email Address</FormLabel>
+              </View>
+              <FormInput 
+                value={this.state.email} 
+                containerStyle={styles.containerStyle}
+                inputStyle={styles.inputStyle}
+                onChangeText={(text) => this.setState({ email: text })} 
+              />
+              {/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
+            </View>
           </View>
 
 {/* ----------------------- Sign up and Login Buttons ----------------------- */}
-          <View style={styles.helpContainer}>
+          <View style={styles.buttonContainer}>
             <View>
               <Button
                 onPress={() => this._handleSignUp()}
@@ -200,91 +229,38 @@ export default class SettingsScreen extends React.Component {
             </View>
           </View>
         </ScrollView>
-
       </ImageBackground>
     );
   }
 }
 
-
-
 const styles = StyleSheet.create({
+  statusBar: {
+    //borderBottomWidth: 2,
+    borderColor: 'white',
+    alignItems: 'center',
+    paddingTop: 20,
+    marginBottom: 20,
+    backgroundColor: '#18454f',
+    height: 60,
+    //height: Constants.statusBarHeight,
+  },
+  headerText: {  
+    textAlign: 'center',
+    color: 'white',
+    paddingTop: 30,
+    fontSize: 20, 
+    fontFamily: 'averia-serif',
+    position: 'absolute',
+  },
   container: {
     flex: 1,
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
+  mainContainer: {
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
+    //marginHorizontal: 50,
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 25,
-    color: 'white',
-    // lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
+  buttonContainer: {
     marginTop: 15,
     marginRight: 40,
     marginLeft: 40,
@@ -295,41 +271,46 @@ const styles = StyleSheet.create({
   },
   buttonSignUp: {
     borderRadius: 20,
-    backgroundColor: 'blue',
+    backgroundColor: '#5aecf350',
     height: 40
   },
   buttonLogin: {
     borderRadius: 20,
-    backgroundColor: 'green',
+    backgroundColor: '#07f50f50',
     height: 40
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
-  signUpButton: {
-    backgroundColor: '#7FFF00',
   },
   inputStyle: {
     textAlign: 'center',
+    paddingRight: 70,
+    margin: 0,
+    color: 'white',
   },
   formTitle: {
     fontSize: 20,
+    marginTop: 0,
     color: 'white',
-    marginTop: 5,
-    marginBottom: -2,
-    // paddingHorizontal: 5, 
-    // borderWidth: 1,
-    // borderColor: '#43ebf3',
   },
   containerStyle: {
+    padding: 0, 
+    margin: 0,
+    width: '80%',
+  },
+  testContainer: {
+    alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#43ebf3',
     borderRadius: 50,
-    padding: 10, 
-    marginTop: 0
+    borderColor: 'white',
+    paddingBottom: 5,
+    marginTop: 10,
+    width: '90%',
+    backgroundColor: '#ffffff50',
+  }, 
+  rowForIcon: {
+    flexDirection: 'row',
+  },
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null,
   }
 });

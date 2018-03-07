@@ -25,23 +25,47 @@ export default class LinksScreen extends React.Component {
     header: null,
   };
   componentWillMount() {
-    StatusBar.setHidden(true);
+    StatusBar.setHidden(false);
   }
+
   render() {
     return (
       
-      <ImageBackground source={require('../assets/images/blurry3.png')} style={styles.container}>
+      <ImageBackground source={require('../assets/images/blurry4.png')} style={styles.backgroundImage}>
+
 {/* ------------------------- Status Bar ------------------------- */}
         <View>
           <View style={styles.statusBar}>
             <Text style={styles.headerText}>View and Edit</Text>
           </View>
         </View>
-
+        
 {/* ------------------------- Main Container ------------------------- */}
         <ScrollView style={styles.container}>
           <View style={styles.listContainer}>
-            <TextInput style={styles.textInput}/>
+            <View style={styles.itemBox}>
+              <TextInput style={styles.textInput}/>
+            </View>
+          </View>
+          <View style={styles.buttonContainer}>
+            <View>
+              <Button
+                onPress={() => this._handleSignUp()}
+                icon={{name:'person-add', color:'white'}}
+                buttonStyle={styles.buttonSignUp}
+                //raised
+                title='SIGNUP'
+              />
+            </View>
+            <View>
+              <Button
+                onPress={() => this._handleLogin()}
+                icon={{name:'person', color:'white'}}
+                buttonStyle={styles.buttonLogin}
+                //raised
+                title='LOGIN'
+              />
+            </View>
           </View>
         </ScrollView>
       </ImageBackground>
@@ -83,19 +107,26 @@ export default class LinksScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  tabBarInfoContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
   statusBar: {
     //borderBottomWidth: 2,
     borderColor: 'white',
     alignItems: 'center',
-    padding: 20,
-    //marginBottom: 20,
-    backgroundColor: '#383f58',
-    height: Constants.statusBarHeight,
+    paddingTop: 20,
+    marginBottom: 20,
+    backgroundColor: '#18454f',
+    height: 60,
+    //height: Constants.statusBarHeight,
   },
   headerText: {  
     textAlign: 'center',
     color: 'white',
-    paddingTop: 8,
+    paddingTop: 30,
     fontSize: 20, 
     fontFamily: 'averia-serif',
     position: 'absolute',
@@ -108,54 +139,42 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textInput: {
-    width: '90%',
-    backgroundColor: 'white',
-    borderRadius: 50,
-  },
-  listBox: {
-    borderColor: '#43ebf3',
-    borderWidth: 1,
-    width: 350, 
-    height: 70, 
-    backgroundColor: null, 
-    marginTop: 10, 
-    padding: 15, 
-    borderRadius: 50,
-  },
-  listBoxHead: {
-    fontFamily: 'averia-serif',
+    height: 45,
     fontSize: 30,
-    color: 'white', 
-    // fontWeight: "bold", 
-    textAlign: "center",
+    color: 'white',
+    textAlign: 'center',
   },
-  listBoxEdit: {
-    fontFamily: 'averia-serif',
-    color: "#43ebf3", 
-    textAlign: "center", 
-  },
-  newListButton: {
-    borderColor: '#229426',
+  itemBox: {
+    borderColor: 'white',
     borderWidth: 1,
-    width: 220, 
-    height: 50, 
-    backgroundColor: '#27bd2c', 
-    // paddingTop: 7, 
-    // paddingBottom: 11,
-    marginTop: 10, 
+    width: '95%',
+    height: 50,
+    backgroundColor: '#ffffff50',
     borderRadius: 50,
-  }, 
-  listBoxAddText: {
-    fontFamily: 'averia-serif',
-    fontSize: 18,
-    color: 'white', 
-    marginTop: 10,
-    // fontWeight: "bold", 
-    textAlign: "center",
+    paddingHorizontal: 20,
   },
   backgroundImage: {
-    flex: 1,
+    flex: 1, 
     width: null,
-    height: null,  
+    height: null,
+  },
+  buttonContainer: {
+    marginTop: 15,
+    marginRight: 40,
+    marginLeft: 40,
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  buttonSignUp: {
+    borderRadius: 20,
+    backgroundColor: '#5aecf350',
+    height: 40
+  },
+  buttonLogin: {
+    borderRadius: 20,
+    backgroundColor: '#ab040490',
+    height: 40
   },
 });

@@ -54,6 +54,7 @@ export default TabNavigator(
                   />
                 );
             break;
+            
 //-----------------------------Settings tab in tab bar-----------------------------
           case 'Settings':
             iconName =
@@ -86,9 +87,9 @@ export default TabNavigator(
     initialRouteName: 'Links',
     tabBarOptions: {
       activeTintColor: 'white',
-      activeBackgroundColor: '#383f58',
+      activeBackgroundColor: '#18454f',
       inactiveTintColor: 'white',
-      inactiveBackgroundColor: '#655c61',
+      inactiveBackgroundColor: '#25626e',
       labelStyle: {
         fontSize: 12,
       },
