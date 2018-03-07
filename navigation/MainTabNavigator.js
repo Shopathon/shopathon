@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 
@@ -32,8 +32,8 @@ export default TabNavigator(
             return (
               <Ionicons
               name={iconName}
-              size={28}
-              style={{ marginBottom: -3 }}
+              size={15}
+              //style={{ marginBottom:  }}
               color={'white'}
               />
             );
@@ -48,8 +48,8 @@ export default TabNavigator(
                 return (
                   <Ionicons
                     name={iconName}
-                    size={28}
-                    style={{ marginBottom: -3 }}
+                    size={15}
+                    //style={{ marginBottom: 2 }}
                     color={"white"}
                   />
                 );
@@ -62,8 +62,8 @@ export default TabNavigator(
               return (
                 <Ionicons
                   name={iconName}
-                  size={28}
-                  style={{ marginBottom: -3 }}
+                  size={15}
+                  //style={{ marginBottom: 2 }}
                   color={'white'}
                 />
               );
@@ -72,7 +72,7 @@ export default TabNavigator(
         //   <Ionicons
         //     name={iconName}
         //     size={28}
-        //     style={{ marginBottom: -3 }}
+        //     style={{ marginBottom: 2 }}
         //     color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
         //   />
         // );
@@ -83,18 +83,21 @@ export default TabNavigator(
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     animationEnabled: false,
-    swipeEnabled: true,
-    initialRouteName: 'Links',
+    swipeEnabled: false,
+    initialRouteName: 'Home',
     tabBarOptions: {
       activeTintColor: 'white',
       activeBackgroundColor: '#18454f',
       inactiveTintColor: 'white',
       inactiveBackgroundColor: '#25626e',
-      labelStyle: {
-        fontSize: 12,
-      },
+      showLabel: false,
+      // labelStyle: {
+      //   fontSize: 12,
+      //   marginTop: 5,
+      // },
       style: {
         borderTopWidth: 0,
+        height: 0,
       },
     }
   }

@@ -14,9 +14,9 @@
       "resizeMode": "cover",
       "backgroundColor": "white"
     },
-    "androidStatusBar": {
-      "backgroundColor": "#18454f"
-    },
+    // "androidStatusBar": {
+    //   "backgroundColor": "#18454f"
+    // },
     "ios": {
       "supportsTablet": true
     }

@@ -14,29 +14,38 @@ import {
 import {
   Button,
   Icon,
+  Header
 } from 'react-native-elements';
 import { WebBrowser, Font } from 'expo';
 import { MonoText } from '../components/StyledText';
 import { Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
+import RootNavigation from '../navigation/RootNavigation';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
   componentWillMount() {
-    StatusBar.setHidden(false);
+    StatusBar.setHidden(true);
   }
   render() {
+    const { navigate } = this.props.navigation;
     return (
       
       <ImageBackground source={require('../assets/images/blurry5.png')} style={styles.backgroundImage}>
 {/* ------------------------- Status Bar ------------------------- */}
-        <View>
+        {/* <View>
           <View style={styles.statusBar}>
-            <Text style={styles.headerText}>Shopping Lists</Text>
+            <Text style={styles.headerText}>View and Edit</Text>
           </View>
-        </View>
+        </View> */}
+        <Header
+          leftComponent={{ icon: 'menu', color: '#fff', onPress: () => console.log('pressed') }}
+          centerComponent={{ text: 'Your Lists', style: styles.headerText }}
+          outerContainerStyles={styles.statusBar}
+          //rightComponent={{ icon: 'home' }}
+        />
 
 {/* ------------------------- Main Container ------------------------- */}
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -46,7 +55,7 @@ export default class HomeScreen extends React.Component {
             
             {/* <View> */}
               <Button
-                //onPress={() => this._handleLogin()}
+                onPress={() => navigate('Links')}
                 buttonStyle={styles.listBox}
                 icon={{name:'shopping-cart', color:'white'}}
                 title={ 
@@ -59,7 +68,7 @@ export default class HomeScreen extends React.Component {
             {/* </View> */}
             {/* <View> */}
               <Button
-                //onPress={() => this._handleLogin()}
+                onPress={() => navigate('Links')}
                 buttonStyle={styles.listBox}
                 icon={{name:'shopping-cart', color:'white'}}
                 title={ 
@@ -72,7 +81,7 @@ export default class HomeScreen extends React.Component {
             {/* </View> */}
             {/* <View> */}
               <Button
-                //onPress={() => this._handleLogin()}
+                onPress={() => navigate('Links')}
                 buttonStyle={styles.listBox}
                 icon={{name:'shopping-cart', color:'white'}}
                 title={ 
@@ -85,7 +94,7 @@ export default class HomeScreen extends React.Component {
             {/* </View> */}
             {/* <View> */}
               <Button
-                //onPress={() => this._handleLogin()}
+                onPress={() => navigate('Links')}
                 buttonStyle={styles.listBox}
                 icon={{name:'shopping-cart', color:'white'}}
                 title={ 
@@ -105,7 +114,7 @@ export default class HomeScreen extends React.Component {
             </View> */}
             <View>
               <Button
-                //onPress={() => this._handleLogin()}
+                onPress={() => navigate('Links')}
                 buttonStyle={styles.newListButton}
                 title={ 
                   <Text style={styles.listBoxAddText}>
@@ -157,22 +166,23 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   statusBar: {
-    //borderBottomWidth: 2,
-    borderColor: 'white',
-    alignItems: 'center',
-    paddingTop: 20,
-    marginBottom: 20,
+    borderBottomWidth: 0,
+    //borderColor: 'white',
+    //alignItems: 'center',
+    paddingBottom: 10,
+    //marginBottom: 20,
     backgroundColor: '#18454f',
-    height: 60,
+    height: 50,
     //height: Constants.statusBarHeight,
   },
   headerText: {  
-    textAlign: 'center',
-    color: 'white',
-    paddingTop: 30,
+    //textAlign: 'center',
+    color: '#fff',
+    //paddingTop: 13,
+    //marginBottom: 15,
     fontSize: 20, 
     fontFamily: 'averia-serif',
-    position: 'absolute',
+    //position: 'absolute',
   },
   container: {
     flex: 1,
@@ -244,7 +254,6 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     width: null,
-    height: null,
-    
-}
+    height: null,   
+  }
 });
