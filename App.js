@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   statusBarUnderlay: {
-    height: 24,
+    height: 0,
     backgroundColor: 'rgba(0,0,0,0.2)',
   },
 });

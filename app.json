@@ -10,9 +10,12 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/images/words.png",
+      "resizeMode": "cover",
+      "backgroundColor": "white"
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#18454f"
     },
     "ios": {
       "supportsTablet": true
