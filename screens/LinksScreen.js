@@ -14,31 +14,40 @@ import {
 import {
   Button,
   Icon,
+  Header
 } from 'react-native-elements';
 import { WebBrowser, Font } from 'expo';
 import { MonoText } from '../components/StyledText';
 import { Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
+import RootNavigation from '../navigation/RootNavigation';
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
   componentWillMount() {
-    StatusBar.setHidden(false);
+    StatusBar.setHidden(true);
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       
       <ImageBackground source={require('../assets/images/blurry4.png')} style={styles.backgroundImage}>
 
 {/* ------------------------- Status Bar ------------------------- */}
-        <View>
+        {/* <View>
           <View style={styles.statusBar}>
             <Text style={styles.headerText}>View and Edit</Text>
           </View>
-        </View>
+        </View> */}
+        <Header
+          leftComponent={{ icon: 'menu', color: '#fff' }}
+          centerComponent={{ text: 'New List', style: styles.headerText }}
+          outerContainerStyles={styles.statusBar}
+          rightComponent={{ icon: 'home', color: '#fff', onPress: () => navigate('Home') }}
+        />
         
 {/* ------------------------- Main Container ------------------------- */}
         <ScrollView style={styles.container}>
@@ -50,20 +59,22 @@ export default class LinksScreen extends React.Component {
           <View style={styles.buttonContainer}>
             <View>
               <Button
-                onPress={() => this._handleSignUp()}
-                icon={{name:'person-add', color:'white'}}
+                onPress={() => navigate('Home')}
+                //onPress={() => this._handleSignUp()}
+                icon={{name:'add', color:'white'}}
                 buttonStyle={styles.buttonSignUp}
                 //raised
-                title='SIGNUP'
+                title='Save List'
               />
             </View>
             <View>
               <Button
-                onPress={() => this._handleLogin()}
-                icon={{name:'person', color:'white'}}
+                onPress={() => navigate('Home')}
+                //onPress={() => this._handleLogin()}
+                icon={{name:'delete', color:'white'}}
                 buttonStyle={styles.buttonLogin}
                 //raised
-                title='LOGIN'
+                title='Delete List'
               />
             </View>
           </View>
@@ -114,22 +125,23 @@ const styles = StyleSheet.create({
     right: 0,
   },
   statusBar: {
-    //borderBottomWidth: 2,
-    borderColor: 'white',
-    alignItems: 'center',
-    paddingTop: 20,
-    marginBottom: 20,
+    borderBottomWidth: 0,
+    //borderColor: 'white',
+    //alignItems: 'center',
+    paddingBottom: 10,
+    //marginBottom: 20,
     backgroundColor: '#18454f',
-    height: 60,
+    height: 50,
     //height: Constants.statusBarHeight,
   },
   headerText: {  
-    textAlign: 'center',
-    color: 'white',
-    paddingTop: 30,
+    //textAlign: 'center',
+    color: '#fff',
+    //paddingTop: 13,
+    //marginBottom: 15,
     fontSize: 20, 
     fontFamily: 'averia-serif',
-    position: 'absolute',
+    //position: 'absolute',
   },
   container: {
     flex: 1,

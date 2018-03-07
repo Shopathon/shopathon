@@ -75,6 +75,7 @@ import {
   FormValidationMessage,
   Button,
   Icon,
+  Header
 } from 'react-native-elements';
 
 export default class SettingsScreen extends React.Component {
@@ -82,7 +83,7 @@ export default class SettingsScreen extends React.Component {
     header: null,
   };
   componentWillMount() {
-    StatusBar.setHidden(false);
+    StatusBar.setHidden(true);
   }
 
   constructor(props) {
@@ -122,12 +123,19 @@ export default class SettingsScreen extends React.Component {
   render() {
     return (
       <ImageBackground source={require('../assets/images/blurry4.png')} style={styles.backgroundImage}>
-        
-        <View>
+
+{/* ------------------------- Status Bar ------------------------- */}
+        {/* <View>
           <View style={styles.statusBar}>
-            <Text style={styles.headerText}>App Login</Text>
+            <Text style={styles.headerText}>View and Edit</Text>
           </View>
-        </View>
+        </View> */}
+        <Header
+          leftComponent={{ icon: 'info', color: '#fff', onPress: () => console.log('pressed') }}
+          centerComponent={{ text: 'Login', style: styles.headerText }}
+          outerContainerStyles={styles.statusBar}
+          //rightComponent={{ icon: 'home' }}
+        />
 
         <ScrollView style={styles.container}>
           {/* <View style={styles.welcomeContainer}>
@@ -236,22 +244,23 @@ export default class SettingsScreen extends React.Component {
 
 const styles = StyleSheet.create({
   statusBar: {
-    //borderBottomWidth: 2,
-    borderColor: 'white',
-    alignItems: 'center',
-    paddingTop: 20,
-    marginBottom: 20,
+    borderBottomWidth: 0,
+    //borderColor: 'white',
+    //alignItems: 'center',
+    paddingBottom: 10,
+    //marginBottom: 20,
     backgroundColor: '#18454f',
-    height: 60,
+    height: 50,
     //height: Constants.statusBarHeight,
   },
   headerText: {  
-    textAlign: 'center',
-    color: 'white',
-    paddingTop: 30,
+    //textAlign: 'center',
+    color: '#fff',
+    //paddingTop: 13,
+    //marginBottom: 15,
     fontSize: 20, 
     fontFamily: 'averia-serif',
-    position: 'absolute',
+    //position: 'absolute',
   },
   container: {
     flex: 1,
