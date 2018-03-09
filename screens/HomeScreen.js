@@ -33,7 +33,7 @@ export default class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       
-      <ImageBackground source={require('../assets/images/blurry5.png')} style={styles.backgroundImage}>
+      <ImageBackground source={require('../assets/images/gradient2.png')} style={styles.backgroundImage}>
 {/* ------------------------- Status Bar ------------------------- */}
         {/* <View>
           <View style={styles.statusBar}>
@@ -44,7 +44,7 @@ export default class HomeScreen extends React.Component {
           leftComponent={{ icon: 'menu', color: '#fff', onPress: () => console.log('pressed') }}
           centerComponent={{ text: 'Your Lists', style: styles.headerText }}
           outerContainerStyles={styles.statusBar}
-          //rightComponent={{ icon: 'home' }}
+          rightComponent={{ icon: 'person', color: '#fff', onPress: () => navigate('Settings') }}
         />
 
 {/* ------------------------- Main Container ------------------------- */}
@@ -61,7 +61,7 @@ export default class HomeScreen extends React.Component {
                 title={ 
                   <Text>
                     <Text style={styles.listBoxHead}>Walmart</Text>
-                    <Text style={styles.listBoxEdit}>  View/ Edit This List</Text>
+                    <Text style={styles.listBoxEdit}>  View/ Edit</Text>
                   </Text>
                 }
               />
@@ -74,7 +74,7 @@ export default class HomeScreen extends React.Component {
                 title={ 
                   <Text>
                     <Text style={styles.listBoxHead}>Costco</Text>
-                    <Text style={styles.listBoxEdit}>  View/ Edit This List</Text>
+                    <Text style={styles.listBoxEdit}>  View/ Edit</Text>
                   </Text>
                 }
               />
@@ -87,7 +87,7 @@ export default class HomeScreen extends React.Component {
                 title={ 
                   <Text>
                     <Text style={styles.listBoxHead}>Target</Text>
-                    <Text style={styles.listBoxEdit}>  View/ Edit This List</Text>
+                    <Text style={styles.listBoxEdit}>  View/ Edit</Text>
                 </Text>
                 }
               />
@@ -100,7 +100,7 @@ export default class HomeScreen extends React.Component {
                 title={ 
                   <Text>
                     <Text style={styles.listBoxHead}>Smiths</Text>
-                    <Text style={styles.listBoxEdit}>  View/ Edit This List</Text>
+                    <Text style={styles.listBoxEdit}>  View/ Edit</Text>
                 </Text>
                 }
               />
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     //alignItems: 'center',
     paddingBottom: 10,
     //marginBottom: 20,
-    backgroundColor: '#18454f',
+    backgroundColor: '#6fb1bb',
     height: 50,
     //height: Constants.statusBarHeight,
   },
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: 340, 
     height: 70, 
-    backgroundColor: '#ffffff40', 
+    backgroundColor: '#00000035', 
     marginTop: 10, 
     padding: 15, 
     borderRadius: 50,
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
   },
   listBoxEdit: {
     fontFamily: 'averia-serif',
-    color: "#43ebf3", 
+    color: "#9eeaae", 
     textAlign: "center", 
   },
   newListButton: {
