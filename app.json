@@ -12,7 +12,7 @@
     "splash": {
       "image": "./assets/images/words.png",
       "resizeMode": "cover",
-      "backgroundColor": "white"
+      "backgroundColor": "#ffffff"
     },
     // "androidStatusBar": {
     //   "backgroundColor": "#18454f"

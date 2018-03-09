@@ -34,7 +34,7 @@ export default class LinksScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       
-      <ImageBackground source={require('../assets/images/blurry4.png')} style={styles.backgroundImage}>
+      <ImageBackground source={require('../assets/images/gradient1.png')} style={styles.backgroundImage}>
 
 {/* ------------------------- Status Bar ------------------------- */}
         {/* <View>

@@ -77,6 +77,7 @@ import {
   Icon,
   Header
 } from 'react-native-elements';
+import RootNavigation from '../navigation/RootNavigation';
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
@@ -121,8 +122,9 @@ export default class SettingsScreen extends React.Component {
   // }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <ImageBackground source={require('../assets/images/blurry4.png')} style={styles.backgroundImage}>
+      <ImageBackground source={require('../assets/images/gradient1.png')} style={styles.backgroundImage}>
 
 {/* ------------------------- Status Bar ------------------------- */}
         {/* <View>
@@ -131,10 +133,10 @@ export default class SettingsScreen extends React.Component {
           </View>
         </View> */}
         <Header
-          leftComponent={{ icon: 'info', color: '#fff', onPress: () => console.log('pressed') }}
+          leftComponent={{ icon: 'home', color: '#fff', onPress: () => navigate('Home') }}
           centerComponent={{ text: 'Login', style: styles.headerText }}
           outerContainerStyles={styles.statusBar}
-          //rightComponent={{ icon: 'home' }}
+          rightComponent={{ icon: 'info', color: '#fff', onPress: () => console.log('pressed') }}
         />
 
         <ScrollView style={styles.container}>
