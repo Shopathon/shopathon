@@ -37,7 +37,7 @@ class ShopList extends Component {
 
     renderList() {
         return this.state.list.map((list, index) =>
-            <ListCheckBox key={index} tag={list.name} list={list} id={list.id}/>);
+            <ListCheckBox key={list.id} tag={list.name} list={list} id={list.id} checked={list.isBought}/>);
     }
 
     render() {

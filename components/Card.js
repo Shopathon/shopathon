@@ -7,7 +7,6 @@ import Icon from 'react-native-elements';
 deleteItem = (id) => {
     let self = this
     axios.delete('https://shielded-mesa-86644.herokuapp.com/delete/listItem/' + id, {
-
     })
         .then(function (response) {
             // console.log(self.props);
@@ -23,28 +22,20 @@ const Card = (props) => {
         {
             text: 'Delete',
             sensitivity: 10,
+            autoClose: true,
             backgroundColor: 'transparent',
             color: 'red',
-            underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
             type: 'delete',
+            close: true,
             onPress: () => { this.deleteItem(props.id) },
-            autoClose: true,
         },
-        // {
-        //     text: 'Add',
-        //     backgroundColor: 'green',
-        //     underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
-        //     type: 'delete',
-        //     onPress: () => { console.log(props.id) }
-        // }
     ]
     return (
-        <Swipeout right={swipeoutBtns} id={props.id} style={styles.thisStyle}>
+        <Swipeout autoClose={true} right={swipeoutBtns} id={props.id} style={styles.thisStyle}>
             <View>
                 {props.children}
             </View>
         </Swipeout>
-
     );
 };
 
