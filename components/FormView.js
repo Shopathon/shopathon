@@ -47,6 +47,13 @@ class FormView extends Component {
             //title="Add"
             onPress={this.addNewItem}
           />
+          {/* <Button
+            buttonStyle={{ borderRadius: 50, height: 50, width: 50, padding: 0, marginLeft: 0, alignContent: 'center' }}
+            icon={{name:'check', color:'green', size: 40}}
+            backgroundColor="transparent"
+            //title="Add"
+            onPress={this.addNewItem}
+          /> */}
         </View>
       </View>
     );
