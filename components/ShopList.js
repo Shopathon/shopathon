@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import ListCheckBox from './ListCheckBox';
 import axios from 'axios';
+import FormView from './FormView';
 
 // https://shielded-mesa-86644.herokuapp.com/list/5a91bbc0246ffb0014ba7807
 
@@ -41,9 +42,12 @@ class ShopList extends Component {
 
     render() {
         return (
-            <ScrollView style={styles.containerStyle}>
-                {this.renderList()}
-            </ScrollView>
+            <View style={styles.containerStyle}>
+                <ScrollView >
+                    {this.renderList()}
+                </ScrollView>
+                <FormView />
+            </View>
         );
     }
 
@@ -51,7 +55,8 @@ class ShopList extends Component {
 
 const styles = {
     containerStyle: {
-        height: '75%',
+        height: '96%',
+        width: '100%'
     }
 };
 

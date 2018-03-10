@@ -21,10 +21,18 @@ import { MonoText } from '../components/StyledText';
 import { Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import RootNavigation from '../navigation/RootNavigation';
+import { DrawerNavigator } from 'react-navigation';
+
+const MyApp = DrawerNavigator({
+  Home: {
+    screen: 'Home',
+  }
+});
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
+    drawerLabel: 'Home'
   };
   componentWillMount() {
     StatusBar.setHidden(true);
@@ -41,7 +49,7 @@ export default class HomeScreen extends React.Component {
           </View>
         </View> */}
         <Header
-          leftComponent={{ icon: 'menu', color: '#fff', onPress: () => console.log('pressed') }}
+          leftComponent={{ icon: 'menu', color: '#fff', onPress: () => navigate('DrawerToggle') }}
           centerComponent={{ text: 'Your Lists', style: styles.headerText }}
           outerContainerStyles={styles.statusBar}
           rightComponent={{ icon: 'person', color: '#fff', onPress: () => navigate('Settings') }}
@@ -171,7 +179,7 @@ const styles = StyleSheet.create({
     //alignItems: 'center',
     paddingBottom: 10,
     //marginBottom: 20,
-    backgroundColor: '#6fb1bb',
+    backgroundColor: '#18454f',
     height: 50,
     //height: Constants.statusBarHeight,
   },

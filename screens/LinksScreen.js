@@ -9,12 +9,14 @@ import {
   View,
   TextInput,
   ImageBackground,
-  StatusBar
+  StatusBar,
+  KeyboardAvoidingView
 } from 'react-native';
 import {
   Button,
   Icon,
-  Header
+  Header,
+  CheckBox
 } from 'react-native-elements';
 import { WebBrowser, Font } from 'expo';
 import { MonoText } from '../components/StyledText';
@@ -22,7 +24,19 @@ import { Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import RootNavigation from '../navigation/RootNavigation';
 
+//import Header from '../components/Header';
+import ShopList from '../components/ShopList';
+// import AddItem from '../components/AddItem';
+import FormView from '../components/FormView';
+
 export default class LinksScreen extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      addItem: false,
+      key: '',
+    }
+  };
   static navigationOptions = {
     header: null,
   };
@@ -37,48 +51,21 @@ export default class LinksScreen extends React.Component {
       <ImageBackground source={require('../assets/images/gradient1.png')} style={styles.backgroundImage}>
 
 {/* ------------------------- Status Bar ------------------------- */}
-        {/* <View>
-          <View style={styles.statusBar}>
-            <Text style={styles.headerText}>View and Edit</Text>
-          </View>
-        </View> */}
         <Header
           leftComponent={{ icon: 'menu', color: '#fff' }}
           centerComponent={{ text: 'New List', style: styles.headerText }}
           outerContainerStyles={styles.statusBar}
           rightComponent={{ icon: 'home', color: '#fff', onPress: () => navigate('Home') }}
         />
-        
 {/* ------------------------- Main Container ------------------------- */}
-        <ScrollView style={styles.container}>
-          <View style={styles.listContainer}>
-            <View style={styles.itemBox}>
-              <TextInput style={styles.textInput}/>
-            </View>
-          </View>
-          <View style={styles.buttonContainer}>
-            <View>
-              <Button
-                onPress={() => navigate('Home')}
-                //onPress={() => this._handleSignUp()}
-                icon={{name:'add', color:'white'}}
-                buttonStyle={styles.buttonSignUp}
-                //raised
-                title='Save List'
-              />
-            </View>
-            <View>
-              <Button
-                onPress={() => navigate('Home')}
-                //onPress={() => this._handleLogin()}
-                icon={{name:'delete', color:'white'}}
-                buttonStyle={styles.buttonLogin}
-                //raised
-                title='Delete List'
-              />
-            </View>
-          </View>
-        </ScrollView>
+         
+          <KeyboardAvoidingView style={{paddingBottom:0}}>
+            <ShopList
+              style={styles.container}
+              addItem={this.state.addItem}
+              key={this.state.key}
+            />
+          </KeyboardAvoidingView>
       </ImageBackground>
     );
   }
@@ -144,7 +131,9 @@ const styles = StyleSheet.create({
     //position: 'absolute',
   },
   container: {
-    flex: 1,
+    //flex: 1,
+    //alignItems: 'center',
+    justifyContent: 'center',
   },
   listContainer: {
     paddingTop: 30,

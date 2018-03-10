@@ -21,16 +21,30 @@ class ListCheckBox extends Component {
             id={list._id}
             >
                 <CheckBox
+                    containerStyle={styles.checkBox}
+                    textStyle={styles.checkText}
                     key={list.name}
                     list={list}
                     title={list.name}
                     id={list._id}
                     checked={checked}
+                    uncheckedColor='white'
                     onPress={() => this.setState({ checked: !checked })}
                 />
             </Card>
         );
     }
 }
+
+const styles = {
+    checkBox: {
+        borderRadius: 30,
+        backgroundColor: '#18454f50',
+    },
+    checkText: {
+        color: 'white',
+        fontSize: 18
+    }
+};
 
 export default ListCheckBox;
