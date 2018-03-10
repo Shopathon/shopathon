@@ -9,7 +9,7 @@ class ListCheckBox extends Component {
     constructor() {
         super();
         this.state = {
-            checked: false,
+            checked: true,
         };
     }
 

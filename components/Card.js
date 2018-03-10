@@ -7,7 +7,6 @@ import Icon from 'react-native-elements';
 deleteItem = (id) => {
     let self = this
     axios.delete('https://shielded-mesa-86644.herokuapp.com/delete/listItem/' + id, {
-        close: true
     })
         .then(function (response) {
             // console.log(self.props);
