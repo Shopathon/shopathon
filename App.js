@@ -1,13 +1,29 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, AsyncStorage } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
+import SettingsScreen from './screens/SettingsScreen';
+import { StackNavigator, SwitchNavigator } from 'react-navigation';
 
-export default class App extends React.Component {
+class App extends React.Component {
   state = {
-    isLoadingComplete: false
+    isLoadingComplete: false,
+    isAuthed: false,
+    isAuthedChecked: false
   };
+  
+  async componentDidUpdate() {
+    if (!this.state.isAuthedChecked) {
+      const bob = await AsyncStorage.getItem('@superkey: id');
+        if (bob) {
+          this.setState({isAuthed: true, isAuthedChecked: true});
+        }
+      return this.state.isAuthed? this.props.navigation.navigate('App'): this.props.navigation.navigate('Auth');
+    } else {
+      return this.state.isAuthed? this.props.navigation.navigate('App'): this.props.navigation.navigate('Auth');
+    }
+  }
 
   render() {
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
@@ -23,7 +39,7 @@ export default class App extends React.Component {
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-          <RootNavigation />
+          {/* <RootNavigation /> */}
         </View>
       );
     }
@@ -56,6 +72,18 @@ export default class App extends React.Component {
     this.setState({ isLoadingComplete: true });
   };
 }
+
+const AuthStack = StackNavigator({ SignIn: SettingsScreen });
+export default SwitchNavigator(
+    {
+      AuthLoading: App,
+      App: RootNavigation,
+      Auth: AuthStack,
+    },
+    {
+      initialRouteName: 'AuthLoading',
+    }
+  );
 
 const styles = StyleSheet.create({
   container: {

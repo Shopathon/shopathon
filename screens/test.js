@@ -12,7 +12,6 @@ import {
     StatusBar,
     Modal 
 } from 'react-native';
-import SwitchNavigator from "../App";
 import { Button, Icon, Header } from 'react-native-elements';
 //import { WebBrowser, Font } from 'expo';
 import { MonoText } from '../components/StyledText';

@@ -52,7 +52,6 @@ class ShopList extends Component {
             </View>
         );
     }
-
 };
 
 const styles = {
