@@ -14,7 +14,8 @@ class FormView extends Component {
 
   addNewItem = () => {
       let self = this
-      axios.post('https://shielded-mesa-86644.herokuapp.com/new/listItem/5a91bbc0246ffb0014ba7807/', {
+      //console.log(this.props.id)
+      axios.post('https://shielded-mesa-86644.herokuapp.com/new/listItem/' + this.props.id, {
         name: this.state.name
       })
         .then(function (response) {     

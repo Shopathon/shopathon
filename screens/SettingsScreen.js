@@ -1,59 +1,3 @@
-// import React from 'react';
-// import { Text, View, TextInput, StyleSheet, ImageBackground} from 'react-native';
-// import { ExpoConfigView } from '@expo/samples';
-
-// export default class SettingsScreen extends React.Component {
-//   static navigationOptions = {
-//     title: 'New List',
-//     header: null,
-//   };
-
-//   render() {
-//     return (
-//       <ImageBackground source={require('../assets/images/blurry3.png')} style={styles.container}>
-        
-//           <Text>Hello</Text>
-//           <View style={styles.inputContainer}>
-//             <TextInput style={styles.textInput} placeholder="Input Here"/>
-//           </View>
-//           <View style={styles.inputContainer}>
-//             <TextInput style={styles.textInput} placeholder="Input Here"/>
-//           </View>
-//           <View style={styles.inputContainer}>
-//             <TextInput style={styles.textInput} placeholder="Input Here"/>
-//           </View>
-//           <View style={styles.inputContainer}>
-//             <TextInput style={styles.textInput} placeholder="Input Here"/>
-//           </View>
-          
-        
-//       </ImageBackground>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     padding: 30,
-//     flex: 1,
-//     backgroundColor: '#fff',
-//   },
-//   inputContainer: {
-//     height: 40,
-//     borderRadius: 30,
-//     paddingTop: 5,
-//     paddingRight: 10,
-//     paddingLeft: 10,
-//     marginTop: 5,
-//     backgroundColor: 'white', 
-//   },
-//   textInput: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     paddingBottom: 10,
-//   },
-// });
-
 import React from 'react';
 import {
   Image,
@@ -64,11 +8,10 @@ import {
   TouchableOpacity,
   View,
   ImageBackground,
-  StatusBar
+  StatusBar,
+  KeyboardAvoidingView
 } from 'react-native';
-import { WebBrowser, Constants } from 'expo';
 import { MonoText } from '../components/StyledText';
-
 import {
   FormLabel,
   FormInput,
@@ -95,62 +38,37 @@ export default class SettingsScreen extends React.Component {
       passwordConfirm: '',
       email: ''
     };
-
     // this.handleChange = this.handleChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  };
 
   _handleSignUp() {
     console.log(this.state.username);
     console.log(this.state.password);
     console.log(this.state.passwordConfirm);
     console.log(this.state.email);
-  }
+  };
   _handleLogin() {
     console.log(this.state.username);
     console.log(this.state.password);
     console.log(this.state.email);
-  }
-
-  // handleChange(event) {
-  //   this.setState({ value: event.target.value });
-  // }
-
-  // handleSubmit(event) {
-  //   // alert('A name was submitted: ' + this.state.value);
-  //   event.preventDefault();
-  // }
+  };
 
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <ImageBackground source={require('../assets/images/gradient1.png')} style={styles.backgroundImage}>
 
-{/* ------------------------- Status Bar ------------------------- */}
-        {/* <View>
-          <View style={styles.statusBar}>
-            <Text style={styles.headerText}>View and Edit</Text>
-          </View>
-        </View> */}
+// ------------------------- Background Image -------------------------
+      <ImageBackground source={require('../assets/images/gradient1.png')} style={styles.backgroundImage}>
+    
+{/* ------------------------- Page Header ------------------------- */}
         <Header
           leftComponent={{ icon: 'home', color: '#fff', onPress: () => navigate('Home') }}
           centerComponent={{ text: 'Login', style: styles.headerText }}
           outerContainerStyles={styles.statusBar}
           rightComponent={{ icon: 'info', color: '#fff', onPress: () => console.log('pressed') }}
         />
-
         <ScrollView style={styles.container}>
-          {/* <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/coupons.jpg')
-                  : require('../assets/images/coupons.jpg')
-              }
-              style={styles.welcomeImage}
-            />
-          </View> */}
-
           <View style={styles.mainContainer}>
             
 {/* ----------------------- Username input ----------------------- */}
@@ -247,22 +165,14 @@ export default class SettingsScreen extends React.Component {
 const styles = StyleSheet.create({
   statusBar: {
     borderBottomWidth: 0,
-    //borderColor: 'white',
-    //alignItems: 'center',
     paddingBottom: 10,
-    //marginBottom: 20,
     backgroundColor: '#18454f',
     height: 50,
-    //height: Constants.statusBarHeight,
   },
   headerText: {  
-    //textAlign: 'center',
     color: '#fff',
-    //paddingTop: 13,
-    //marginBottom: 15,
     fontSize: 20, 
     fontFamily: 'averia-serif',
-    //position: 'absolute',
   },
   container: {
     flex: 1,
@@ -293,6 +203,7 @@ const styles = StyleSheet.create({
   inputStyle: {
     textAlign: 'center',
     paddingRight: 70,
+    paddingBottom: 20,
     margin: 0,
     color: 'white',
   },
@@ -311,10 +222,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 50,
     borderColor: 'white',
+    paddingTop: 5,
     paddingBottom: 5,
     marginTop: 10,
-    width: '90%',
-    backgroundColor: '#ffffff50',
+    width: '96%',
+    height: 70,
+    backgroundColor: '#18454f50',
   }, 
   rowForIcon: {
     flexDirection: 'row',

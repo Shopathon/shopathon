@@ -14,26 +14,26 @@ class ShopList extends Component {
 
         };
     }
-
+    
     componentWillMount() {
-        axios.get('https://shielded-mesa-86644.herokuapp.com/list/5a91bbc0246ffb0014ba7807')
+        //console.log(this.props.id)
+        axios.get('https://shielded-mesa-86644.herokuapp.com/list/' + this.props.id)
             .then(response => this.setState({
                 list: response.data.listItems, function() {
                     console.log(response.data);
                 }
             }));
-           
     }
 
     componentDidUpdate() {
-        axios.get('https://shielded-mesa-86644.herokuapp.com/list/5a91bbc0246ffb0014ba7807')
+        //console.log(this.props.id)
+        axios.get('https://shielded-mesa-86644.herokuapp.com/list/' + this.props.id)
             .then(response => this.setState({
                 list: response.data.listItems, function() {
                     console.log(list);
                 }
             }));
     }
-
 
     renderList() {
         return this.state.list.map((list, index) =>
@@ -46,7 +46,9 @@ class ShopList extends Component {
                 <ScrollView >
                     {this.renderList()}
                 </ScrollView>
-                <FormView />
+                <FormView
+                    id = {this.props.id}
+                />
             </View>
         );
     }
