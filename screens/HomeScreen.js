@@ -67,9 +67,9 @@ export default class HomeScreen extends React.Component {
     };
 
     renderStores(){
-        return (this.state.stores.map((stores, index) =>
+        return (this.state.stores?this.state.stores.map((stores, index) =>
         <StoreButton navigate={this.props.navigation.navigate} key={index} id={stores._id} name={stores.store}/>)
-    )};
+    :null)};
 
     setModalVisible(visible) {
         this.setState({modalVisible: visible});
@@ -95,10 +95,10 @@ export default class HomeScreen extends React.Component {
 
 {/* ------------------------- Page Header ------------------------- */}
                 <Header
-                    leftComponent={{ icon: 'menu', color: '#fff', onPress: () => navigate('DrawerToggle') }}
+                    leftComponent={{ icon: 'info', color: '#fff', onPress: () => navigate('DrawerToggle') }}
                     centerComponent={{ text: 'Your Lists', style: styles.headerText }}
                     outerContainerStyles={styles.statusBar}
-                    rightComponent={{ icon: 'person', color: '#fff', onPress: () => navigate('Settings') }}
+                    rightComponent={{ icon: 'md-log-out', color: '#fff', type: 'ionicon', onPress: () => console.log('log-out') }}
                 />
 
 {/* ------------------------- Main Container ------------------------- */}
@@ -123,7 +123,8 @@ export default class HomeScreen extends React.Component {
                                     <View style={styles.listContainer}>
                                         <View style={styles.itemBox}>
                                             <TextInput style={styles.textInput}
-                                                value={this.state.store}
+												value={this.state.store}
+												underlineColorAndroid={'white'}
                                                 onChangeText={(text) => this.setState({ store: text })} />
                                         </View>
                                     </View>
@@ -155,7 +156,7 @@ export default class HomeScreen extends React.Component {
                                 buttonStyle={styles.newListButton}
                                 title={ 
                                     <Text style={styles.listBoxAddText}>
-                                        <Ionicons name={'md-add-circle'} size={20} /> Add A New List
+                                        <Ionicons name={'md-add-circle'} size={20} /> Create A List
                                     </Text>
                                 }/>
                         </View>

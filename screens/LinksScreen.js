@@ -58,13 +58,13 @@ export default class LinksScreen extends React.Component {
           			rightComponent={{ icon: 'home', color: '#fff', onPress: () => navigate('Home') }} />
 
 {/* ------------------------- Main Container ------------------------- */}
-				<KeyboardAvoidingView style={{paddingBottom:0}}>
+				<View style={{paddingBottom:0}}>
 					<ShopList
 						id={itemId}
 						style={styles.container}
 						addItem={this.state.addItem}
 						key={this.state.key} />
-				</KeyboardAvoidingView>
+				</View>
       		</ImageBackground>
     	);
   	}

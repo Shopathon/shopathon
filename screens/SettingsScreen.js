@@ -23,12 +23,13 @@ import {
     Header
 } from 'react-native-elements';
 import RootNavigation from '../navigation/RootNavigation';
-
+import axios from 'axios';
 
 export default class SettingsScreen extends React.Component {
   	static navigationOptions = {
     	header: null,
-  	};
+	};
+	  
   	componentWillMount() {
     	StatusBar.setHidden(true);
   	}
@@ -36,18 +37,16 @@ export default class SettingsScreen extends React.Component {
   	constructor(props) {
 		super(props);
 		this.state = {
-		  username: '',
-		  password: '',
-		  passwordConfirm: '',
-		  email: '',
-		  isSent: false
+			username: '',
+			password: '',
+			passwordConfirm: '',
+			email: '',
+			isSent: false
 		};
     // this.handleChange = this.handleChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
-	  };
+	};
 	  
-
-
   	async _handleSignUp() {
 		let component = this;
 		if (this.state.password == this.state.passwordConfirm) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import ListCheckBox from './ListCheckBox';
 import axios from 'axios';
 import FormView from './FormView';
@@ -37,19 +37,19 @@ class ShopList extends Component {
 
     renderList() {
         return this.state.list.map((list, index) =>
-            <ListCheckBox key={list.id} tag={list.name} list={list} id={list.id} checked={list.isBought}/>);
+            <ListCheckBox key={index} tag={list.name} list={list} id={list.id} checked={list.isBought}/>);
     }
 
     render() {
         return (
-            <View style={styles.containerStyle}>
-                <ScrollView >
-                    {this.renderList()}
-                </ScrollView>
-                <FormView
-                    id = {this.props.id}
-                />
-            </View>
+            <KeyboardAvoidingView>
+                <View style={styles.containerStyle}>
+                    <ScrollView >
+                        {this.renderList()}
+                    </ScrollView>
+                    <FormView id = {this.props.id}/>
+                </View>
+            </KeyboardAvoidingView>
         );
     }
 };

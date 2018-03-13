@@ -21,7 +21,7 @@ const Card = (props) => {
     let swipeoutBtns = [
         {
             text: 'Delete',
-            sensitivity: 10,
+            sensitivity: 5,
             autoClose: true,
             backgroundColor: 'transparent',
             color: 'red',
