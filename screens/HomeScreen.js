@@ -103,7 +103,7 @@ export default class HomeScreen extends React.Component {
 
 {/* ------------------------- Main Container ------------------------- */}
                 <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-                    <View style={{alignItems: 'center'}}>
+                    <View style={{alignItems: 'center', paddingBottom: 10,}}>
                         {this.renderStores()}
 
 {/* ------------------------- Add New Item Box/ Modal ------------------------- */}
@@ -183,7 +183,8 @@ const styles = StyleSheet.create({
         fontFamily: 'averia-serif',
     },
     container: {
-        flex: 1
+		
+		paddingBottom: 10
     },
     newListButton: {
         width: 220, 
@@ -198,7 +199,8 @@ const styles = StyleSheet.create({
         fontFamily: 'averia-serif',
         fontSize: 18,
         color: 'white', 
-        marginTop: 10,
+		marginTop: 10,
+		marginBottom: 15,
         // fontWeight: "bold", 
         textAlign: "center",
     },

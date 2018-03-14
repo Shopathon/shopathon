@@ -30,20 +30,22 @@ class FormView extends Component {
   render() {
     return (
       <View style={styles.rowForm}>
-        <View>
-          <FormInput
+        <View style={{ width: "75%" }}>
+          <TextInput
             value={this.state.name}
             onChangeText={(text) => this.setState({ name: text })}
             name="Add Item"
             placeholder="Add Item..." 
-            containerStyle={{marginRight: 0}}
-            inputStyle={{width: 250}}
+            style={{ fontSize: 20, height: 70, paddingRight: 0, marginRight: 0, marginLeft: 15}}
+            underlineColorAndroid={'transparent'}
+            // containerStyle={{marginRight: 0}}
+            // inputStyle={{width: 250, }}
           />
         </View>
         <View>
           <Button
-            buttonStyle={{ borderRadius: 50, height: 50, width: 50, padding: 0, marginLeft: 0, alignContent: 'center' }}
-            icon={{name:'add-circle', color:'blue', size: 40}}
+            buttonStyle={{ padding: 0, marginLeft: 0, alignContent: 'center' }}
+            icon={{name:'add-circle', color:'#1dbd38', size: 60, padding: 0 }}
             backgroundColor="transparent"
             //title="Add"
             onPress={this.addNewItem}
@@ -64,7 +66,8 @@ class FormView extends Component {
 const styles = StyleSheet.create({
   rowForm:{
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    width: "100%"
   }
 })
 export default FormView;
