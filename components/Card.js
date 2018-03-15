@@ -24,11 +24,21 @@ const Card = (props) => {
             sensitivity: 1,
             autoClose: true,
             backgroundColor: 'transparent',
-            color: 'red',
+            color: '#ff0000',
             type: 'delete',
             close: true,
             onPress: () => { this.deleteItem(props.id) },
         },
+        {
+            text: 'Image',
+            sensitivity: 5,
+            autoClose: true,
+            backgroundColor: 'transparent',
+            color: '#00ff00',
+            type: 'image',
+            right: 'true',
+            onPress: () => { props.camera('Camera', {id: props.id}) },
+        }
     ]
     return (
         <Swipeout autoClose={true} right={swipeoutBtns} id={props.id} style={styles.thisStyle}>

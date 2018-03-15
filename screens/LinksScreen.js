@@ -60,6 +60,7 @@ export default class LinksScreen extends React.Component {
 {/* ------------------------- Main Container ------------------------- */}
 				<View style={{paddingBottom:0}}>
 					<ShopList
+						camera={navigate}
 						id={itemId}
 						style={styles.container}
 						addItem={this.state.addItem}
