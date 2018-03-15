@@ -138,6 +138,7 @@ export default class CameraScreen extends React.Component {
             type: 'image/jpeg', // or photo.type
             name: 'testPhotoName'
           });
+          comp.props.navigation.navigate("Links");
           fetch(ClOUDINARY_URL, {
             method: 'post',
             body: formData
@@ -148,11 +149,9 @@ export default class CameraScreen extends React.Component {
                   image: data.secure_url
                 }).then(function(res) {
                   console.log(res.data);
-                  comp.props.navigation.navigate("Links");
                 }).catch(function(err) {
                   console.log(err);
                 })
-                
             })
           });
         })

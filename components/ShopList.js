@@ -46,6 +46,7 @@ class ShopList extends Component {
                 <View style={styles.containerStyle}>
                     <ScrollView style={{ borderBottomWidth: 3, zIndex: 1 }}>
                         {this.renderList()}
+                        {this.props.children}
                     </ScrollView>
                     <FormView id = {this.props.id}/>
                 </View>
