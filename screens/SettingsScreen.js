@@ -30,7 +30,7 @@ export default class SettingsScreen extends React.Component {
   	static navigationOptions = {
     	header: null,
 	};
-	  
+
   	componentWillMount() {
     	StatusBar.setHidden(true);
   	}
@@ -42,7 +42,8 @@ export default class SettingsScreen extends React.Component {
 			password: '',
 			passwordConfirm: '',
 			email: '',
-			modalVisible: false
+			modalVisible: false,
+			modalVisibleInfo: false,
 		};
     // this.handleChange = this.handleChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,6 +51,9 @@ export default class SettingsScreen extends React.Component {
 
 	setModalVisible(visible) {
         this.setState({modalVisible: visible});
+	};
+	setModalVisibleInfo(visible) {
+        this.setState({modalVisibleInfo: visible});
     };
 	  
   	async _handleSignUp() {
@@ -108,7 +112,7 @@ export default class SettingsScreen extends React.Component {
 					leftComponent={{ icon: 'home', color: '#fff', onPress: () => navigate('Home') }}
 					centerComponent={{ text: 'Login', style: styles.headerText }}
 					outerContainerStyles={styles.statusBar}
-					rightComponent={{ icon: 'info', color: '#fff', onPress: () => this._handleLogin() }} />
+					rightComponent={{ icon: 'info', color: '#fff', onPress: () => this.setModalVisibleInfo(true) }} />
 					
 				<ScrollView style={styles.container}>
 					<View style={styles.mainContainer}>
@@ -122,6 +126,8 @@ export default class SettingsScreen extends React.Component {
 							</View>
 							<FormInput  
 								containerStyle={styles.containerStyle}
+								selectionColor="#ffffff"
+								underlineColorAndroid="transparent"
 								inputStyle={styles.inputStyle} 
 								value={this.state.username}  
 								onChangeText={(text) => this.setState({ username: text })} /> 
@@ -137,6 +143,8 @@ export default class SettingsScreen extends React.Component {
 							<FormInput 
 								secureTextEntry={true} 
 								containerStyle={styles.containerStyle}
+								selectionColor="#ffffff"
+								underlineColorAndroid="transparent"
 								inputStyle={styles.inputStyle} 
 								value={this.state.password} 
 								onChangeText={(text) => this.setState({ password: text })} />
@@ -152,6 +160,8 @@ export default class SettingsScreen extends React.Component {
 							<FormInput 
 								secureTextEntry={true} 
 								containerStyle={styles.containerStyle}
+								selectionColor="#ffffff"
+								underlineColorAndroid="transparent"
 								inputStyle={styles.inputStyle}
 								value={this.state.passwordConfirm} 
 								onChangeText={(text) => this.setState({ passwordConfirm: text })} />
@@ -167,25 +177,47 @@ export default class SettingsScreen extends React.Component {
 							<FormInput 
 								value={this.state.email} 
 								containerStyle={styles.containerStyle}
+								selectionColor="#ffffff"
+								underlineColorAndroid="transparent"
 								inputStyle={styles.inputStyle}
 								onChangeText={(text) => this.setState({ email: text })} />
 							{/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
 						</View>
 					</View>
+{/* ----------------------- Sign up and Login Buttons ----------------------- */}
+					<View style={styles.buttonContainer}>
+						<View>
+							<Button
+								onPress={() => this._handleSignUp()}
+								icon={{name:'person-add', color:'white'}}
+								buttonStyle={styles.buttonSignUp}
+								//raised
+								title='Sign Up' />
+						</View>
+						<View>
+							<Button
+								onPress={() => this.setModalVisible(true)}
+								icon={{name:'person', color:'white'}}
+								buttonStyle={styles.buttonLogin}
+								//raised
+								title='Login' />
+						</View>
+					</View>
+{/* ----------------------- Modal ----------------------- */}
 					<Modal
-                            animationType="slide"
-                            transparent={false}
-                            visible={this.state.modalVisible}
-                            onRequestClose={() => {console.log('closed');}} >
+						animationType="slide"
+						transparent={false}
+						visible={this.state.modalVisible}
+						onRequestClose={() => {console.log('closed');}} >
 
-                            <ImageBackground source={require('../assets/images/gradient2.png')} style={styles.backgroundImage}>
-                                <View>
-                                    <View style={styles.statusBar}>
-                                        <Text style={styles.headerText}>Login</Text>
-                                    </View>
-                                </View>
-                                <ScrollView style={styles.container}>
-                                    <View style={styles.listContainer}>
+						<ImageBackground source={require('../assets/images/gradient2.png')} style={styles.backgroundImage}>
+							<View>
+								<View style={styles.statusBar}>
+									<Text style={styles.headerText}>Login</Text>
+								</View>
+							</View>
+							<ScrollView style={styles.container}>
+								<View style={styles.listContainer}>
 									<View style={styles.testContainer}>
 				
 										<View style={styles.rowForIcon}>
@@ -194,6 +226,8 @@ export default class SettingsScreen extends React.Component {
 										</View>
 										<FormInput  
 											containerStyle={styles.containerStyle}
+											selectionColor="#ffffff"
+											underlineColorAndroid="transparent"
 											inputStyle={styles.inputStyle} 
 											value={this.state.username}  
 											onChangeText={(text) => this.setState({ username: text })} /> 
@@ -209,76 +243,157 @@ export default class SettingsScreen extends React.Component {
 										<FormInput 
 											secureTextEntry={true} 
 											containerStyle={styles.containerStyle}
+											selectionColor="#ffffff"
+											underlineColorAndroid="transparent"
 											inputStyle={styles.inputStyle} 
 											value={this.state.password} 
 											onChangeText={(text) => this.setState({ password: text })} />
 										{/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
 									</View>
-                                    </View>
-                                    <View style={styles.buttonContainer}>
-                                        <View>
-                                            <Button
-                                                onPress={() => {this._handleLogin()}}
-                                                icon={{name:'person-add', color:'white'}}
-                                                buttonStyle={styles.buttonLogin}
-                                                //raised
-                                                title={ 
-                                                    <Text style={styles.listBoxAddText}>
-                                                        LOGIN
-                                                    </Text>
-                                                } />
-                                        </View>
-                                        <View>
-                                            <Button
-                                                onPress={() => this.setModalVisible(!this.state.modalVisible)}
-                                                icon={{name:'person', color:'white'}}
-                                                buttonStyle={styles.buttonLogin}
-                                                //raised
-                                                title={ 
-                                                    <Text style={styles.listBoxAddText}>
-                                                        SIGNUP
-                                                    </Text>
-                                                } />
-                                        </View>
-                                    </View>
-                                </ScrollView>
-                            </ImageBackground>
-                        </Modal>
-{/* ----------------------- Sign up and Login Buttons ----------------------- */}
-					<View style={styles.buttonContainer}>
-						<View>
-							<Button
-								onPress={() => this._handleSignUp()}
-								icon={{name:'person-add', color:'white'}}
-								buttonStyle={styles.buttonSignUp}
-								//raised
-								title='SIGNUP' />
-						</View>
-						<View>
-							<Button
-								onPress={() => this.setModalVisible(true)}
-								icon={{name:'person', color:'white'}}
-								buttonStyle={styles.buttonLogin}
-								//raised
-								title='LOGIN' />
-						</View>
-					</View>
+								</View>
+								<View style={styles.buttonContainer}>
+									<View>
+										<Button
+											onPress={() => {this._handleLogin()}}
+											icon={{name:'person-add', color:'white'}}
+											buttonStyle={styles.buttonLogin}
+											//raised
+											title={ 
+												<Text style={styles.listBoxAddText}>
+													Login
+												</Text>
+											} />
+									</View>
+									<View>
+										<Button
+											onPress={() => this.setModalVisible(!this.state.modalVisible)}
+											icon={{name:'person', color:'white'}}
+											buttonStyle={styles.buttonSignUp}
+											//raised
+											title={ 
+												<Text style={styles.listBoxAddText}>
+													Sign Up
+												</Text> } />
+									</View>
+								</View>
+							</ScrollView>
+						</ImageBackground>
+					</Modal>
+					<Modal
+						animationType="fade"
+						transparent={true}
+						visible={this.state.modalVisibleInfo}
+						onRequestClose={() => {console.log('closed');}}>
+
+						<ImageBackground source={require('../assets/images/gradient2.png')} style={styles.backgroundImage}>
+							<View>
+								<View style={styles.statusBar}>
+									<Text style={styles.headerText}>Information</Text>
+								</View>
+							</View>
+							<ScrollView style={styles.container}>
+								<View style={styles.modalContainer}>
+									<Text style={styles.modalHead}>Developers</Text>
+									<View style={styles.devLinks}>
+										<Text onPress={this._handleGithubJoe} style={styles.linkText}>
+											Github
+										</Text>
+										<Text style={styles.devName}>Joseph Musser</Text>
+										<Text onPress={this._handleLinkedJoe} style={styles.linkText}>
+											Linked-In
+										</Text>
+									</View>
+									<View style={styles.devLinks}>
+										<Text onPress={this._handleGithubAusten} style={styles.linkText}>
+											Github
+										</Text>
+										<Text style={styles.devName}>Austen Pritchett</Text>
+										<Text onPress={this._handleLinkedAusten} style={styles.linkText}>
+											Linked-In
+										</Text>
+									</View>
+									<View style={styles.devLinks}>
+										<Text onPress={this._handleGithubJordan} style={styles.linkText}>
+											Github
+										</Text>
+										<Text style={styles.devName}>Jordan Higgins</Text>
+										<Text onPress={this._handleLinkedJordan} style={styles.linkText}>
+											Linked-In
+										</Text>
+									</View>
+									<View style={styles.devLinks}>
+										<Text onPress={this._handleGithubZiwei} style={styles.linkText}>
+											Github
+										</Text>
+										<Text style={styles.devName}>Ziwei Zhang</Text>
+										<Text onPress={this._handleLinkedZiwei} style={styles.linkText}>
+											Linked-In
+										</Text>
+									</View>
+									<View style={styles.devLinks}>
+										<Text onPress={this._handleGithubChase} style={styles.linkText}>
+											Github
+										</Text>
+										<Text style={styles.devName}>Chase Millet</Text>
+										<Text onPress={this._handleLinkedChase} style={styles.linkText}>
+											Linked-In
+										</Text>
+									</View>
+								</View>
+							</ScrollView>
+							<View style={{ marginBottom: 15 }}> 
+								<Button
+									onPress={() => this.setModalVisibleInfo(!this.state.modalVisibleInfo)}
+									icon={{name:'hot-tub', color:'white'}}
+									buttonStyle={styles.buttonClose}
+									//raised
+									title='Close' />
+							</View>
+						</ImageBackground>
+					</Modal>
 				</ScrollView>
 			</ImageBackground>
 		);
 	}
+	_handleGithubJoe = () => {
+		WebBrowser.openBrowserAsync('https://github.com/itsajoe');
+	};
+	_handleLinkedJoe = () => {
+		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/joseph-musser-6835ba13a/');
+	};
+	_handleGithubAusten = () => {
+		WebBrowser.openBrowserAsync('https://github.com/pritchettausten');
+	};
+	_handleLinkedAusten = () => {
+		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/austen-pritchett-02695146/');
+	};
+	_handleGithubJordan = () => {
+		WebBrowser.openBrowserAsync('https://github.com/jhiggi44');
+	};
+	_handleLinkedJordan = () => {
+		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/jordan-higgins/');
+	};
+	_handleGithubZiwei = () => {
+		WebBrowser.openBrowserAsync('https://github.com/zz0115');
+	};
+	_handleLinkedZiwei = () => {
+		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/ziwei0115/');
+	};
+	_handleGithubChase = () => {
+		WebBrowser.openBrowserAsync('https://github.com/chasemillet');
+	};
+	_handleLinkedChase = () => {
+		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/chase-millet-2aa095b9/');
+	};
 }
 
 const styles = StyleSheet.create({
 	statusBar: {
         borderBottomWidth: 0,
-
         paddingTop: 10,
-		    paddingBottom: 10,
+		paddingBottom: 10,
         backgroundColor: '#18454f',
         height: 60,
-
-        
     },
     headerText: {  
         textAlign: 'center',
@@ -289,6 +404,9 @@ const styles = StyleSheet.create({
     },
 	container: {
 		flex: 1,
+	},
+	listContainer:{
+		alignItems: 'center'
 	},
 	mainContainer: {
 		alignItems: 'center',
@@ -305,12 +423,12 @@ const styles = StyleSheet.create({
 	},
 	buttonSignUp: {
 		borderRadius: 20,
-		backgroundColor: '#5aecf350',
+		backgroundColor: '#447d9280',
 		height: 40
 	},
 	buttonLogin: {
 		borderRadius: 20,
-		backgroundColor: '#07f50f50',
+		backgroundColor: '#32ec2680',
 		height: 40
 	},
 	inputStyle: {
@@ -349,5 +467,42 @@ const styles = StyleSheet.create({
 		flex: 1,
 		width: null,
 		height: null,
-	}
+	},
+	modalHead: {
+		textAlign: 'center',
+		fontSize: 30,
+		borderBottomWidth: 1,
+		paddingBottom: 10
+	},
+	devLinks: {
+		//flexWrap: 'wrap', 
+		//alignItems: 'flex-start',
+		alignItems: 'center',
+		flexDirection:'row',
+		justifyContent: 'space-between',
+		//marginBottom: 5,
+		marginLeft: 10,
+		marginRight:10,
+	},
+	devName: {
+		fontSize: 20,
+		margin: 5,
+		marginLeft: 18,
+	},
+	linkText:{
+		fontSize: 16,
+		textAlign: 'right',
+		margin: 5,
+		//paddingTop: 3,
+		color: '#ffffff',
+		borderBottomWidth: 1,
+		borderColor: '#ffffff'
+	},
+	buttonClose: {
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#f7919f',
+        backgroundColor: '#d4152f',
+        height: 40
+    },
 });

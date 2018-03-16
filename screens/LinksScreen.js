@@ -138,37 +138,35 @@ export default class LinksScreen extends React.Component {
 					</ShopList>	
 				</View>
 				<Modal
-                            animationType="slide"
-                            transparent={false}
-                            visible={this.state.modalVisible}
-                            onRequestClose={() => {console.log('closed');}} >
+					animationType="slide"
+					transparent={false}
+					visible={this.state.modalVisible}
+					onRequestClose={() => {console.log('closed');}} >
 
-                            <ImageBackground source={require('../assets/images/gradient2.png')} style={styles.backgroundImage}>
-                                <View>
-                                    <View style={styles.statusBar}>
-                                        <Text style={styles.headerText}>Coupons</Text>
-                                    </View>
-                                </View>
-								<ScrollView >
-									<View style={styles.listContainer}>
-										{this.renderCoupons()}
-											<View style={{marginTop: 20, marginBottom: 20}}>
-												<Button
-													onPress={() => this.setModalVisible(!this.state.modalVisible)}
-													icon={{name:'hot-tub', color:'white'}}
-													buttonStyle={styles.buttonLogin}
-													//raised
-													title={ 
-														<Text style={styles.listBoxAddText}>
-															Close
-														</Text> } />
-											</View>
-										</View>
-									</ScrollView>
-                            </ImageBackground>
-                        </Modal>
-
-
+					<ImageBackground source={require('../assets/images/gradient2.png')} style={styles.backgroundImage}>
+						<View>
+							<View style={styles.statusBar}>
+								<Text style={styles.headerText}>Coupons</Text>
+							</View>
+						</View>
+						<ScrollView >
+							<View style={styles.listContainer}>
+								{this.renderCoupons()}
+									<View style={{marginTop: 20, marginBottom: 20}}>
+										<Button
+											onPress={() => this.setModalVisible(!this.state.modalVisible)}
+											icon={{name:'hot-tub', color:'white'}}
+											buttonStyle={styles.buttonLogin}
+											//raised
+											title={ 
+												<Text style={styles.listBoxAddText}>
+													Close
+												</Text> } />
+									</View>
+								</View>
+							</ScrollView>
+					</ImageBackground>
+				</Modal>
       		</ImageBackground>
     	);
   	}

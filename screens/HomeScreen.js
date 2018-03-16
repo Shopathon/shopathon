@@ -131,7 +131,7 @@ export default class HomeScreen extends React.Component {
 		let component = this;
 	   	const bob = await AsyncStorage.removeItem('@superkey: id');
 	   	console.log(bob);
-	   	component.props.navigation.navigate('Auth');
+		component.props.navigation.navigate('Auth');
 	}
 
     render() {
@@ -145,11 +145,11 @@ export default class HomeScreen extends React.Component {
                     leftComponent={{ icon: 'info', color: '#fff', onPress: () => this.setModalVisibleInfo(true) }}
                     centerComponent={{ text: 'Your Lists', style: styles.headerText}}
                     outerContainerStyles={styles.statusBar}
-                    rightComponent={{ icon: 'md-log-out', color: '#fff', type: 'ionicon', onPress: () => this._handleLogin() }}
+                    rightComponent={{ icon: 'md-log-out', color: '#fff', type: 'ionicon', onPress: () => this._handleLogin()}}
                 />
 
 {/* ------------------------- Main Container ------------------------- */}
-                <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+                <ScrollView style={styles.container}>
                     <View style={{alignItems: 'center', paddingBottom: 10,}}>
                         {this.renderStores()}
 
@@ -279,20 +279,17 @@ export default class HomeScreen extends React.Component {
 										title='Close' />
 								</View>
 							</ImageBackground>
-
 						</Modal>
-
                     </View>
                 </ScrollView>
-				<View style={{alignItems: 'center', paddingBottom: 10,}}>
+				<View style={{ marginBottom: 15 }}>
 					<Button
 						onPress={() => { this.setModalVisible(true); }}
 						buttonStyle={styles.newListButton}
 						title={ 
-							<Text style={styles.listBoxAddText}>
+							<Text >
 								<Ionicons name={'md-add-circle'} size={20} /> Create A List
-							</Text>
-						}/>
+							</Text> } />
 				</View>
             </ImageBackground>
         );
@@ -348,13 +345,19 @@ const styles = StyleSheet.create({
 		paddingBottom: 10
     },
     newListButton: {
-        width: 220, 
-        height: 50, 
+        width: '100%', 
+        height: 40, 
         backgroundColor: '#32ec2680', 
         borderWidth: 1,
         borderColor: '#91ec8b',
         marginTop: 10, 
-        borderRadius: 50,
+		borderRadius: 20,
+		
+		// borderRadius: 20,
+        // borderWidth: 1,
+        // borderColor: '#f7919f',
+        // backgroundColor: '#d4152f',
+        // height: 40
     }, 
     listBoxAddText: {
         fontFamily: 'averia-serif',
