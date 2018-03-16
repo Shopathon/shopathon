@@ -182,16 +182,19 @@ export default class SettingsScreen extends React.Component {
 
 const styles = StyleSheet.create({
 	statusBar: {
-		borderBottomWidth: 0,
+        borderBottomWidth: 0,
+        paddingTop: 10,
 		paddingBottom: 10,
-		backgroundColor: '#18454f',
-		height: 50,
-	},
-	headerText: {  
-		color: '#fff',
-		fontSize: 20, 
-		fontFamily: 'averia-serif',
-	},
+        backgroundColor: '#18454f',
+        height: 60,
+    },
+    headerText: {  
+        textAlign: 'center',
+        color: '#fff',
+		paddingTop: 13,
+        fontSize: 20, 
+        fontFamily: 'averia-serif',
+    },
 	container: {
 		flex: 1,
 	},

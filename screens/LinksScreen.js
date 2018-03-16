@@ -77,16 +77,19 @@ const styles = StyleSheet.create({
     	height: null,
   	},
   	statusBar: {
-    	borderBottomWidth: 0,
-    	paddingBottom: 10,
-    	backgroundColor: '#18454f',
-    	height: 50,
-  	},
-  	headerText: {  
-    	color: '#fff',
-    	fontSize: 20, 
-    	fontFamily: 'averia-serif',
-  	},
+        borderBottomWidth: 0,
+        paddingTop: 10,
+		paddingBottom: 10,
+        backgroundColor: '#18454f',
+        height: 60,
+    },
+    headerText: {  
+        textAlign: 'center',
+        color: '#fff',
+		paddingTop: 13,
+        fontSize: 20, 
+        fontFamily: 'averia-serif',
+    },
   	container: {
     	justifyContent: 'center',
   	}

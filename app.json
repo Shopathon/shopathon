@@ -8,9 +8,9 @@
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    //"icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./assets/images/words.png",
+      "image": "./assets/images/Shop-athon2.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },

@@ -17,7 +17,7 @@ import { Button, Icon, Header } from 'react-native-elements';
 //import { WebBrowser, Font } from 'expo';
 import { MonoText } from '../components/StyledText';
 import { Ionicons } from '@expo/vector-icons';
-import { Constants } from 'expo';
+import { Constants, WebBrowser } from 'expo';
 import RootNavigation from '../navigation/RootNavigation';
 import { DrawerNavigator } from 'react-navigation';
 import axios from 'axios';
@@ -39,7 +39,8 @@ export default class HomeScreen extends React.Component {
     }
 
     state = {
-        modalVisible: false,
+		modalVisible: false,
+		modalVisibleInfo: false,
         store: "",
         stores: []
     };
@@ -73,6 +74,9 @@ export default class HomeScreen extends React.Component {
 
     setModalVisible(visible) {
         this.setState({modalVisible: visible});
+	};
+	setModalVisibleInfo(visible) {
+        this.setState({modalVisibleInfo: visible});
     };
 
     newList(visible) {
@@ -95,8 +99,8 @@ export default class HomeScreen extends React.Component {
 
 {/* ------------------------- Page Header ------------------------- */}
                 <Header
-                    leftComponent={{ icon: 'info', color: '#fff', onPress: () => navigate('DrawerToggle') }}
-                    centerComponent={{ text: 'Your Lists', style: styles.headerText }}
+                    leftComponent={{ icon: 'info', color: '#fff', onPress: () => this.setModalVisibleInfo(true) }}
+                    centerComponent={{ text: 'Your Lists', style: styles.headerText}}
                     outerContainerStyles={styles.statusBar}
                     rightComponent={{ icon: 'md-log-out', color: '#fff', type: 'ionicon', onPress: () => console.log('log-out') }}
                 />
@@ -132,7 +136,7 @@ export default class HomeScreen extends React.Component {
                                         <View>
                                             <Button
                                                 onPress={() => {this.newList(false)}}
-                                                icon={{name:'person-add', color:'white'}}
+                                                icon={{name:'add', color:'white'}}
                                                 buttonStyle={styles.buttonAddList}
                                                 //raised
                                                 title='Add List' />
@@ -150,40 +154,143 @@ export default class HomeScreen extends React.Component {
                             </ImageBackground>
                         </Modal>
 
-                        <View>
-                            <Button
-                                onPress={() => { this.setModalVisible(true); }}
-                                buttonStyle={styles.newListButton}
-                                title={ 
-                                    <Text style={styles.listBoxAddText}>
-                                        <Ionicons name={'md-add-circle'} size={20} /> Create A List
-                                    </Text>
-                                }/>
-                        </View>
+						<Modal
+							animationType="fade"
+							transparent={true}
+							visible={this.state.modalVisibleInfo}
+							onRequestClose={() => {console.log('closed');}}>
+
+							<ImageBackground source={require('../assets/images/gradient2.png')} style={styles.backgroundImage}>
+								<View>
+                                    <View style={styles.statusBar}>
+                                        <Text style={styles.headerText}>Information</Text>
+                                    </View>
+                                </View>
+								<ScrollView style={styles.container}>
+                                    <View style={styles.modalContainer}>
+                                        <Text style={styles.modalHead}>Developers</Text>
+										<View style={styles.devLinks}>
+											<Text onPress={this._handleGithubJoe} style={styles.linkText}>
+												Github
+											</Text>
+											<Text style={styles.devName}>Joseph Musser</Text>
+											<Text onPress={this._handleLinkedJoe} style={styles.linkText}>
+												Linked-In
+											</Text>
+										</View>
+										<View style={styles.devLinks}>
+											<Text onPress={this._handleGithubAusten} style={styles.linkText}>
+												Github
+											</Text>
+											<Text style={styles.devName}>Austen Pritchett</Text>
+											<Text onPress={this._handleLinkedAusten} style={styles.linkText}>
+												Linked-In
+											</Text>
+										</View>
+										<View style={styles.devLinks}>
+											<Text onPress={this._handleGithubJordan} style={styles.linkText}>
+												Github
+											</Text>
+											<Text style={styles.devName}>Jordan Higgins</Text>
+											<Text onPress={this._handleLinkedJordan} style={styles.linkText}>
+												Linked-In
+											</Text>
+										</View>
+										<View style={styles.devLinks}>
+											<Text onPress={this._handleGithubZiwei} style={styles.linkText}>
+												Github
+											</Text>
+											<Text style={styles.devName}>Ziwei Zhang</Text>
+											<Text onPress={this._handleLinkedZiwei} style={styles.linkText}>
+												Linked-In
+											</Text>
+										</View>
+										<View style={styles.devLinks}>
+											<Text onPress={this._handleGithubChase} style={styles.linkText}>
+												Github
+											</Text>
+											<Text style={styles.devName}>Chase Millet</Text>
+											<Text onPress={this._handleLinkedChase} style={styles.linkText}>
+												Linked-In
+											</Text>
+										</View>
+                                    </View>
+								</ScrollView>
+								<View style={{ marginBottom: 15 }}> 
+									<Button
+										onPress={() => this.setModalVisibleInfo(!this.state.modalVisibleInfo)}
+										icon={{name:'person', color:'white'}}
+										buttonStyle={styles.buttonClose}
+										//raised
+										title='Close' />
+								</View>
+							</ImageBackground>
+
+						</Modal>
+
                     </View>
                 </ScrollView>
+				<View style={{alignItems: 'center', paddingBottom: 10,}}>
+					<Button
+						onPress={() => { this.setModalVisible(true); }}
+						buttonStyle={styles.newListButton}
+						title={ 
+							<Text style={styles.listBoxAddText}>
+								<Ionicons name={'md-add-circle'} size={20} /> Create A List
+							</Text>
+						}/>
+				</View>
             </ImageBackground>
         );
-    }
+	}
+	_handleGithubJoe = () => {
+		WebBrowser.openBrowserAsync('https://github.com/itsajoe');
+	};
+	_handleLinkedJoe = () => {
+		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/joseph-musser-6835ba13a/');
+	};
+	_handleGithubAusten = () => {
+		WebBrowser.openBrowserAsync('https://github.com/pritchettausten');
+	};
+	_handleLinkedAusten = () => {
+		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/austen-pritchett-02695146/');
+	};
+	_handleGithubJordan = () => {
+		WebBrowser.openBrowserAsync('https://github.com/jhiggi44');
+	};
+	_handleLinkedJordan = () => {
+		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/jordan-higgins/');
+	};
+	_handleGithubZiwei = () => {
+		WebBrowser.openBrowserAsync('https://github.com/zz0115');
+	};
+	_handleLinkedZiwei = () => {
+		WebBrowser.openBrowserAsync('....');
+	};
+	_handleGithubChase = () => {
+		WebBrowser.openBrowserAsync('https://github.com/chasemillet');
+	};
+	_handleLinkedChase = () => {
+		WebBrowser.openBrowserAsync('....');
+	};
 };
 
 const styles = StyleSheet.create({
     statusBar: {
         borderBottomWidth: 0,
-        paddingTop: 5,
-        paddingBottom: 10,
+        paddingTop: 10,
+		paddingBottom: 10,
         backgroundColor: '#18454f',
-        height: 55,
+        height: 60,
     },
     headerText: {  
         textAlign: 'center',
         color: '#fff',
-        paddingTop: 13,
+		paddingTop: 13,
         fontSize: 20, 
         fontFamily: 'averia-serif',
     },
     container: {
-		
 		paddingBottom: 10
     },
     newListButton: {
@@ -212,7 +319,10 @@ const styles = StyleSheet.create({
     listContainer: {
         paddingTop: 30,
         alignItems: 'center',
-    },
+	},
+	modalContainer:{
+		padding: 10,
+	},
     textInput: {
         height: 45,
         fontSize: 30,
@@ -250,5 +360,36 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between'
-    },
+	},
+	modalHead: {
+		textAlign: 'center',
+		fontSize: 30,
+		borderBottomWidth: 1,
+		paddingBottom: 10
+	},
+	devLinks: {
+		//flexWrap: 'wrap', 
+		//alignItems: 'flex-start',
+		alignItems: 'center',
+		flexDirection:'row',
+		justifyContent: 'space-between',
+		//marginBottom: 5,
+		marginLeft: 10,
+		marginRight:10,
+	},
+	devName: {
+		fontSize: 20,
+		margin: 5,
+		marginLeft: 18,
+	},
+	linkText:{
+		fontSize: 16,
+		textAlign: 'right',
+		margin: 5,
+		//paddingTop: 3,
+		color: '#ffffff',
+		borderBottomWidth: 1,
+		borderColor: '#ffffff'
+
+	}
 });
