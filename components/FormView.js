@@ -12,19 +12,34 @@ class FormView extends Component {
     };
   }
 
+  // addNewItem = () => {
+  //     let self = this
+  //     //console.log(this.props.id)
+  //     axios.post('https://shielded-mesa-86644.herokuapp.com/new/listItem/' + this.props.id, {
+  //       name: this.state.name
+  //     })
+  //       .then(function (response) {     
+  //         // console.log(self.props);
+  //         // console.log(response);
+  //       })
+  //       .catch(function (error) {
+  //         // console.log(error);
+  //       });
+  // }
   addNewItem = () => {
-      let self = this
-      //console.log(this.props.id)
-      axios.post('https://shielded-mesa-86644.herokuapp.com/new/listItem/' + this.props.id, {
-        name: this.state.name
+    let self = this
+    //console.log(this.props.id)
+    axios.post('https://shielded-mesa-86644.herokuapp.com/new/listItem/' + this.props.id, {
+      name: this.state.name
+    })
+      .then(function (response) {
+        self.setState({name: ""})    
+       // console.log(self.props);
+        // console.log(response);
       })
-        .then(function (response) {     
-          // console.log(self.props);
-          // console.log(response);
-        })
-        .catch(function (error) {
-          // console.log(error);
-        });
+      .catch(function (error) {
+        // console.log(error);
+      });
   }
 
   render() {

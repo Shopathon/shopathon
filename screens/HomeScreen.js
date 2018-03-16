@@ -36,19 +36,46 @@ export default class HomeScreen extends React.Component {
         header: null,
         drawerLabel: 'Home'
     };
-    componentWillMount() {
-        StatusBar.setHidden(true);
+    // componentWillMount() {
+    //     StatusBar.setHidden(true);
+	// }
+	
+	async componentWillMount() {
+		StatusBar.setHidden(true);
+        const bob = await AsyncStorage.getItem('@superkey: id');
+        if (bob) {
+        //   console.log(bob);
+          this.setState({id: bob});
+        }
     }
 
     state = {
 		modalVisible: false,
 		modalVisibleInfo: false,
         store: "",
-        stores: []
+		stores: [],
+		id: ""
     };
 
-    componentDidMount(){
-        axios.get('https://shielded-mesa-86644.herokuapp.com/list/')
+	componentDidMount(){
+        // console.log(this.props.navigation.state.params.id);
+        if (this.state.id) {
+           	axios.get('https://shielded-mesa-86644.herokuapp.com/user/' + this.state.id)
+        	// axios.get('http://localhost:9000/user/' + this.state.id)
+			.then((response) => {
+				this.setState({
+					stores: response.data
+				})
+			}).catch(function (error) {
+				console.log(error);
+			})
+        }
+   	};
+
+   componentDidUpdate(){
+        if (this.state.id) {
+            axios.get('https://shielded-mesa-86644.herokuapp.com/user/' + this.state.id)
+        // axios.get('http://localhost:9000/user/' + this.state.id)
         .then((response) => {
             this.setState({
                 stores: response.data
@@ -56,21 +83,9 @@ export default class HomeScreen extends React.Component {
         }).catch(function (error) {
             console.log(error);
         })
-    };
-
-    componentDidUpdate(){
-        axios.get('https://shielded-mesa-86644.herokuapp.com/list/')
-        .then((response) => {
-            this.setState({
-                stores: response.data
-            })
-        }).catch(function (error) {
-            console.log(error);
-        })
+        }
     };
     
-    
-
     renderStores () {
         return (this.state.stores?this.state.stores.map((stores, index) =>
         <StoreButton navigate={this.props.navigation.navigate} key={index} id={stores._id} name={stores.store}/>)
@@ -88,15 +103,27 @@ export default class HomeScreen extends React.Component {
            
 	// };
 
-    newList(visible) {
-        this.setState({modalVisible: visible});
-        axios.post("https://shielded-mesa-86644.herokuapp.com/new/list/", {
+    // newList(visible) {
+    //     this.setState({modalVisible: visible});
+    //     axios.post("https://shielded-mesa-86644.herokuapp.com/new/list/", {
+    //         store: this.state.store
+    //     }).then(function(data) {
+    //         console.log(data.data);
+    //         if (data) {
+    //             console.log("it worked");  
+    //         }   
+    //     })
+	// };
+	newList(visible) {
+        let self = this;
+        axios.post("https://shielded-mesa-86644.herokuapp.com/new/list/" + this.state.id, {
             store: this.state.store
         }).then(function(data) {
             console.log(data.data);
             if (data) {
-                console.log("it worked");  
-            }   
+                console.log("it worked");
+                self.setState({modalVisible: visible, store: ""});  
+           }  
         })
     };
 
@@ -246,7 +273,7 @@ export default class HomeScreen extends React.Component {
 								<View style={{ marginBottom: 15 }}> 
 									<Button
 										onPress={() => this.setModalVisibleInfo(!this.state.modalVisibleInfo)}
-										icon={{name:'person', color:'white'}}
+										icon={{name:'hot-tub', color:'white'}}
 										buttonStyle={styles.buttonClose}
 										//raised
 										title='Close' />
@@ -298,7 +325,7 @@ export default class HomeScreen extends React.Component {
 		WebBrowser.openBrowserAsync('https://github.com/chasemillet');
 	};
 	_handleLinkedChase = () => {
-		WebBrowser.openBrowserAsync('....');
+		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/chase-millet-2aa095b9/');
 	};
 };
 
