@@ -188,10 +188,11 @@ const styles = StyleSheet.create({
   	},
   	statusBar: {
         borderBottomWidth: 0,
-        paddingTop: 5,
-        paddingBottom: 10,
+
+        paddingTop: 10,
+		paddingBottom: 10,
         backgroundColor: '#18454f',
-        height: 55,
+        height: 60,
 	},
 	buttonContainer: {
 		marginTop: 15,
@@ -224,32 +225,11 @@ const styles = StyleSheet.create({
     headerText: {  
         textAlign: 'center',
         color: '#fff',
-        paddingTop: 13,
+		    paddingTop: 13,
         fontSize: 20, 
         fontFamily: 'averia-serif',
     },
-	  newListButton: {
-        width: 220, 
-        height: 50, 
-        backgroundColor: '#32ec2680', 
-        borderWidth: 1,
-        borderColor: '#91ec8b',
-        marginTop: 10, 
-		borderRadius: 50,
-	}, 
-	listBoxAddText: {
-        fontFamily: 'averia-serif',
-        fontSize: 18,
-        color: 'white', 
-		marginTop: 10,
-		marginBottom: 15,
-        // fontWeight: "bold", 
-        textAlign: "center",
-	},
-	listContainer: {
-        paddingTop: 30,
-        alignItems: 'center',
-    },
+
   	container: {
     	justifyContent: 'center',
   	}
