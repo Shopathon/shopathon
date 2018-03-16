@@ -34,7 +34,7 @@ const Card = (props) => {
             sensitivity: 50,
             autoClose: true,
             backgroundColor: 'transparent',
-            color: '#00ff00',
+            color: '#ffffff',
             type: 'image',
             right: 'true',
             onPress: () => { props.camera('Camera', {id: props.id}) },

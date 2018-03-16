@@ -103,41 +103,39 @@ export default class LinksScreen extends React.Component {
           			rightComponent={{ icon: 'home', color: '#fff', onPress: () => navigate('Home') }} />
 
 {/* ------------------------- Main Container ------------------------- */}
-				<View style={{paddingBottom:0}}>
+				<View style={{paddingBottom:0, alignItems: 'center'}}>
 					<ShopList
 						camera={navigate}
 						id={itemId}
 						style={styles.container}
 						addItem={this.state.addItem}
 						key={this.state.key} >
-						<View style={styles.buttonContainer}>
-						<View>
-							<Button
-								onPress={() => {this.couponCall(itemId)}}
-								icon={{name:'shopping-cart', color:'white'}}
-								buttonStyle={styles.buttonAddList}
-								//raised
-								title={ 
-									<Text style={styles.listBoxAddText}>
-										Checkout
-									</Text>
-								} />
-						</View>
-						<View>
-							<Button
-								onPress={() => this.deleteList(itemId, navigate)}
-								icon={{name:'delete', color:'white'}}
-								buttonStyle={styles.buttonClose}
-								//raised
-								title={ 
-									<Text style={styles.listBoxAddText}>
-										Delete List
-									</Text>
-								} />
-						</View>
-					</View>
-						</ShopList>
 						
+						<View style={styles.buttonContainer}>
+							<View>
+								<Button
+									onPress={() => {this.couponCall(itemId)}}
+									icon={{name:'shopping-cart', color:'white'}}
+									buttonStyle={styles.buttonAddList}
+									//raised
+									title={ 
+										<Text style={styles.listBoxAddText}>
+											Checkout
+										</Text> } />
+							</View>
+							<View>
+								<Button
+									onPress={() => this.deleteList(itemId, navigate)}
+									icon={{name:'delete', color:'white'}}
+									buttonStyle={styles.buttonClose}
+									//raised
+									title={ 
+										<Text style={styles.listBoxAddText}>
+											Delete List
+										</Text>} />
+							</View>
+						</View>
+					</ShopList>	
 				</View>
 				<Modal
                             animationType="slide"
@@ -153,23 +151,19 @@ export default class LinksScreen extends React.Component {
                                 </View>
 								<ScrollView >
 									<View style={styles.listContainer}>
-									{this.renderCoupons()}
-									</View>
-                                    <View style={styles.buttonContainer}>
-                                        
-                                        <View>
-                                            <Button
-                                                onPress={() => this.setModalVisible(!this.state.modalVisible)}
-                                                icon={{name:'person', color:'white'}}
-                                                buttonStyle={styles.buttonLogin}
-                                                //raised
-                                                title={ 
-                                                    <Text style={styles.listBoxAddText}>
-                                                        SIGNUP
-                                                    </Text>
-                                                } />
-                                        </View>
-                                    </View>
+										{this.renderCoupons()}
+											<View style={{marginTop: 20, marginBottom: 20}}>
+												<Button
+													onPress={() => this.setModalVisible(!this.state.modalVisible)}
+													icon={{name:'hot-tub', color:'white'}}
+													buttonStyle={styles.buttonLogin}
+													//raised
+													title={ 
+														<Text style={styles.listBoxAddText}>
+															Close
+														</Text> } />
+											</View>
+										</View>
 									</ScrollView>
                             </ImageBackground>
                         </Modal>
@@ -195,11 +189,12 @@ const styles = StyleSheet.create({
         height: 60,
 	},
 	buttonContainer: {
-		marginTop: 15,
-		marginRight: 40,
+		marginTop: 5,
+		marginRight: 45,
 		marginLeft: 40,
+		marginBottom: 5,
 		alignItems: 'center',
-		flex: 1,
+		//flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between'
 	},
@@ -225,12 +220,17 @@ const styles = StyleSheet.create({
     headerText: {  
         textAlign: 'center',
         color: '#fff',
-		    paddingTop: 13,
+		paddingTop: 13,
         fontSize: 20, 
         fontFamily: 'averia-serif',
     },
 
   	container: {
-    	justifyContent: 'center',
-  	}
+		flex: 1,
+		alignItems: 'center'
+	},
+	listContainer: {
+		paddingTop: 30,
+		alignItems: 'center'
+	}  
 });

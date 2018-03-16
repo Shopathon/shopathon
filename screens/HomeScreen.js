@@ -142,9 +142,11 @@ export default class HomeScreen extends React.Component {
                                 <ScrollView style={styles.container}>
                                     <View style={styles.listContainer}>
                                         <View style={styles.itemBox}>
-                                            <TextInput style={styles.textInput}
+											<TextInput style={styles.textInput}
+												placeholder="Add List..." 
+												selectionColor="#ffffff"
 												value={this.state.store}
-												underlineColorAndroid={'white'}
+												underlineColorAndroid={'transparent'}
                                                 onChangeText={(text) => this.setState({ store: text })} />
                                         </View>
                                     </View>
@@ -152,32 +154,33 @@ export default class HomeScreen extends React.Component {
                                         <View>
                                             <Button
                                                 onPress={() => {this.newList(false)}}
-                                                icon={{name:'add', color:'white'}}
+                                                //icon={{name:'add', color:'white'}}
                                                 buttonStyle={styles.buttonAddList}
                                                 //raised
                                                 title={ 
-                                                    <Text style={styles.listBoxAddText}>
-                                                        Add List
-                                                    </Text>
-                                                } />
+                                                    // <Text style={styles.listBoxAddText}>
+                                                    //     Add List
+													// </Text>
+													<Text style={styles.listBoxAddText}>
+														<Ionicons name={'md-add-circle'} size={20} /> Add List
+													</Text> } />
                                         </View>
                                         <View>
                                             <Button
                                                 onPress={() => this.setModalVisible(!this.state.modalVisible)}
-                                                icon={{name:'person', color:'white'}}
+                                                icon={{name:'hot-tub', color:'white'}}
                                                 buttonStyle={styles.buttonClose}
                                                 //raised
                                                 title={ 
                                                     <Text style={styles.listBoxAddText}>
                                                         Close
-                                                    </Text>
-                                                } />
+                                                    </Text> } />
                                         </View>
                                     </View>
                                 </ScrollView>
                             </ImageBackground>
                         </Modal>
-
+		{/* Info */}
 						<Modal
 							animationType="fade"
 							transparent={true}
@@ -289,7 +292,7 @@ export default class HomeScreen extends React.Component {
 		WebBrowser.openBrowserAsync('https://github.com/zz0115');
 	};
 	_handleLinkedZiwei = () => {
-		WebBrowser.openBrowserAsync('....');
+		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/ziwei0115/');
 	};
 	_handleGithubChase = () => {
 		WebBrowser.openBrowserAsync('https://github.com/chasemillet');
@@ -351,7 +354,7 @@ const styles = StyleSheet.create({
         height: 45,
         fontSize: 30,
         color: 'white',
-        textAlign: 'center',
+		textAlign: 'center'
     },
     itemBox: {
         borderColor: 'white',

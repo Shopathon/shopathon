@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity, Slider } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 
 import axios from 'axios';
@@ -45,34 +45,39 @@ class ListCheckBox extends Component {
         const { checked } = this.state;
 
         return (
-            <Card
-                id={list._id}
-                camera={this.props.camera}
-            >
-                <CheckBox
-                    containerStyle={styles.checkBox}
-                    textStyle={styles.checkText}
-                    key={list.id}
-                    list={list}
-                    title={list.name}
+            <View style={{ marginRight: 15, marginLeft: 15 }}>
+                <Card
                     id={list._id}
-                    checked={list.isBought}
-                    uncheckedColor='white'
-                    onPress={() => this.isBought(list._id, list.name, checked)}
-                />
-            </Card>
+                    camera={this.props.camera}
+                >
+                    <CheckBox
+                        containerStyle={styles.checkBox}
+                        component={View}
+                        textStyle={styles.checkText}
+                        key={list.id}
+                        list={list}
+                        title={list.name}
+                        id={list._id}
+                        checked={list.isBought}
+                        uncheckedColor='white'
+                        onIconPress={() => this.isBought(list._id, list.name, checked)}
+                    />
+                </Card>
+            </View>
+            
         );
     }
 }
 
 const styles = {
     checkBox: {
+        height: 60,
         borderRadius: 30,
         backgroundColor: '#18454f50',
     },
     checkText: {
         color: 'white',
-        fontSize: 18
+        fontSize: 25
     }
 };
 

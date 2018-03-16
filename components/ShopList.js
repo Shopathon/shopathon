@@ -44,11 +44,11 @@ class ShopList extends Component {
         return (
             <KeyboardAvoidingView behavior={'padding'}>
                 <View style={styles.containerStyle}>
-                    <ScrollView style={{ borderBottomWidth: 3, zIndex: 1 }}>
+                    <ScrollView>
                         {this.renderList()}
-                        {this.props.children}
                     </ScrollView>
                     <FormView id = {this.props.id}/>
+                    {this.props.children}
                 </View>
             </KeyboardAvoidingView>
         );
@@ -58,7 +58,8 @@ class ShopList extends Component {
 const styles = {
     containerStyle: {
         height: '98%',
-        width: '100%'
+        width: '100%',
+        paddingBottom: 20
     }
 };
 
