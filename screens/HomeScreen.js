@@ -10,7 +10,8 @@ import {
     TextInput,
     ImageBackground,
     StatusBar,
-    Modal 
+    Modal,
+    AsyncStorage
 } from 'react-native';
 import SwitchNavigator from "../App";
 import { Button, Icon, Header } from 'react-native-elements';
@@ -19,7 +20,8 @@ import { MonoText } from '../components/StyledText';
 import { Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import RootNavigation from '../navigation/RootNavigation';
-import { DrawerNavigator } from 'react-navigation';
+// import { DrawerNavigator } from 'react-navigation';
+// import MainTabNavigator from '../navigation/MainTabNavigator';
 import axios from 'axios';
 import StoreButton from '../components/StoreButton'
 
@@ -65,8 +67,10 @@ export default class HomeScreen extends React.Component {
             console.log(error);
         })
     };
+    
+    
 
-    renderStores(){
+    renderStores () {
         return (this.state.stores?this.state.stores.map((stores, index) =>
         <StoreButton navigate={this.props.navigation.navigate} key={index} id={stores._id} name={stores.store}/>)
     :null)};
@@ -74,6 +78,11 @@ export default class HomeScreen extends React.Component {
     setModalVisible(visible) {
         this.setState({modalVisible: visible});
     };
+
+    // async _handleLogin() {
+	//    await AsyncStorage.removeItem('@superkey: id');
+           
+	// };
 
     newList(visible) {
         this.setState({modalVisible: visible});
@@ -87,6 +96,13 @@ export default class HomeScreen extends React.Component {
         })
     };
 
+    async _handleLogin() {
+		let component = this;
+	   	const bob = await AsyncStorage.removeItem('@superkey: id');
+	   	console.log(bob);
+	   	component.props.navigation.navigate('Auth');
+	}
+
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -98,7 +114,7 @@ export default class HomeScreen extends React.Component {
                     leftComponent={{ icon: 'info', color: '#fff', onPress: () => navigate('DrawerToggle') }}
                     centerComponent={{ text: 'Your Lists', style: styles.headerText }}
                     outerContainerStyles={styles.statusBar}
-                    rightComponent={{ icon: 'md-log-out', color: '#fff', type: 'ionicon', onPress: () => console.log('log-out') }}
+                    rightComponent={{ icon: 'md-log-out', color: '#fff', type: 'ionicon', onPress: () => this._handleLogin() }}
                 />
 
 {/* ------------------------- Main Container ------------------------- */}
@@ -135,7 +151,11 @@ export default class HomeScreen extends React.Component {
                                                 icon={{name:'person-add', color:'white'}}
                                                 buttonStyle={styles.buttonAddList}
                                                 //raised
-                                                title='Add List' />
+                                                title={ 
+                                                    <Text style={styles.listBoxAddText}>
+                                                        Add List
+                                                    </Text>
+                                                } />
                                         </View>
                                         <View>
                                             <Button
@@ -143,7 +163,11 @@ export default class HomeScreen extends React.Component {
                                                 icon={{name:'person', color:'white'}}
                                                 buttonStyle={styles.buttonClose}
                                                 //raised
-                                                title='Close' />
+                                                title={ 
+                                                    <Text style={styles.listBoxAddText}>
+                                                        Close
+                                                    </Text>
+                                                } />
                                         </View>
                                     </View>
                                 </ScrollView>

@@ -14,6 +14,7 @@ class ListCheckBox extends Component {
     }
 
     isInCart = (id, name, checked) => {
+        // console.log(id);
         let self = this
         axios.put('https://shielded-mesa-86644.herokuapp.com/updateItem/' + id, {
             name: name,
@@ -46,6 +47,7 @@ class ListCheckBox extends Component {
         return (
             <Card
                 id={list._id}
+                camera={this.props.camera}
             >
                 <CheckBox
                     containerStyle={styles.checkBox}
