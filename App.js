@@ -4,6 +4,7 @@ import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 import SettingsScreen from './screens/SettingsScreen';
+import HomeScreen from './screens/HomeScreen';
 import { StackNavigator, SwitchNavigator } from 'react-navigation';
 
 class App extends React.Component {
