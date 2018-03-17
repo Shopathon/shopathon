@@ -6,20 +6,14 @@ import Icon from 'react-native-elements';
 
 deleteItem = (id) => {
     let self = this
-    axios.delete('https://shielded-mesa-86644.herokuapp.com/delete/listItem/' + id, {
-    })
-        .then(function (response) {
-            // console.log(self.props);
-            // console.log(response);
-        })
+    axios.delete('https://shielded-mesa-86644.herokuapp.com/delete/listItem/' + id, { })
+        .then(function (response) { })
         .catch(function (error) {
             console.log(error);
         });
-}
-
+};
 const Card = (props) => {
-    let swipeoutBtns = [
-        {
+    let swipeoutBtns = [{
             text: 'Delete',
             sensitivity: 50,
             autoClose: true,
@@ -28,8 +22,7 @@ const Card = (props) => {
             type: 'delete',
             close: true,
             onPress: () => { this.deleteItem(props.id) },
-        },
-        {
+        },{
             text: 'Image',
             sensitivity: 50,
             autoClose: true,
@@ -38,8 +31,7 @@ const Card = (props) => {
             type: 'image',
             right: 'true',
             onPress: () => { props.camera('Camera', {id: props.id}) },
-        }
-    ]
+        }];
     return (
         <Swipeout autoClose={true} right={swipeoutBtns} id={props.id} style={styles.thisStyle}>
             <View>

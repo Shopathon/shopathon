@@ -4,47 +4,43 @@ import ListCheckBox from './ListCheckBox';
 import axios from 'axios';
 import FormView from './FormView';
 
-// https://shielded-mesa-86644.herokuapp.com/list/5a91bbc0246ffb0014ba7807
-
 class ShopList extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            list: [],
-
-        };
-    }
-    
+        this.state = { list: [] };
+    };
     componentWillMount() {
-        //console.log(this.props.id)
         axios.get('https://shielded-mesa-86644.herokuapp.com/list/' + this.props.id)
-            .then(response => this.setState({
-                list: response.data.listItems, function() {
-                    console.log(response.data);
-                }
-            }));
-    }
-
+        .then(response => this.setState({
+            list: response.data.listItems, function() {
+                console.log(response.data);
+            }
+        }));
+    };
     componentDidUpdate() {
-        //console.log(this.props.id)
         axios.get('https://shielded-mesa-86644.herokuapp.com/list/' + this.props.id)
-            .then(response => this.setState({
-                list: response.data.listItems, function() {
-                    console.log(list);
-                }
-            }));
-    }
-
+        .then(response => this.setState({
+            list: response.data.listItems, function() {
+                console.log(list);
+            }
+        }));
+    };
     renderList() {
         return this.state.list.map((list, index) =>
-            <ListCheckBox camera={ this.props.camera } key={index} tag={list.name} list={list} id={list.id} checked={list.isBought}/>);
-    }
-
+            <ListCheckBox 
+                camera={ this.props.camera } 
+                key={index} 
+                tag={list.name} 
+                list={list} 
+                id={list.id} 
+                checked={list.isBought}/>
+        );
+    };
     render() {
         return (
-            <KeyboardAvoidingView behavior={'padding'}>
+            <KeyboardAvoidingView behavior={ 'padding' }>
                 <View style={styles.containerStyle}>
-                    <ScrollView>
+                    <ScrollView style={{ marginRight: 15, marginLeft: 15 }}>
                         {this.renderList()}
                     </ScrollView>
                     <FormView id = {this.props.id}/>
@@ -59,9 +55,8 @@ const styles = {
     containerStyle: {
         height: '98%',
         width: '100%',
-        paddingBottom: 20
+        paddingBottom: 20,
     }
 };
-
 
 export default ShopList;

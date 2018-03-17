@@ -1,26 +1,23 @@
 import React from "react";
-import {button, StyleSheet, Text, View} from "react-native";
+import { StyleSheet, Text, View} from "react-native";
 import { Button, Icon } from 'react-native-elements';
 
 const StoreButton = (props) => {
    return(
         <View style={styles.listViewContainer}>
             <Button
-                onPress={() => props.navigate("Links", {id: props.id})}
+                onPress={() => props.navigate("Links", { id: props.id })}
                 buttonStyle={styles.listBox}
-                icon={{name:'shopping-cart', color:'white'}}
+                icon={{ name:'shopping-cart', color:'white' }}
                 title={
                     <Text>
-                    <Text style={styles.listBoxHead}>{props.name}</Text>
-                    <Text style={styles.listBoxEdit}>  View/Edit</Text>
-                </Text>
-                }
-            />
+                        <Text style={styles.listBoxHead}>{props.name}</Text>
+                        <Text style={styles.listBoxEdit}>  View/Edit</Text>
+                    </Text>
+                }/>
         </View>
-   );
+    );
 };
-
-export default StoreButton;
 
 const styles = StyleSheet.create({
     listViewContainer:{
@@ -47,4 +44,6 @@ const styles = StyleSheet.create({
         color: "#9eeaae", 
         textAlign: "center", 
     },
-})
+});
+
+export default StoreButton;

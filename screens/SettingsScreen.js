@@ -15,25 +15,14 @@ import {
 } from 'react-native';
 import SwitchNavigator from "../App";
 import { MonoText } from '../components/StyledText';
-import {
-    FormLabel,
-    FormInput,
-    FormValidationMessage,
-    Button,
-    Icon,
-    Header
-} from 'react-native-elements';
+import { FormLabel, FormInput, FormValidationMessage, Button, Icon, Header } from 'react-native-elements';
 import RootNavigation from '../navigation/RootNavigation';
 import axios from 'axios';
 
 export default class SettingsScreen extends React.Component {
-  	static navigationOptions = {
-    	header: null,
-	};
+  	static navigationOptions = { header: null };
 
-  	componentWillMount() {
-    	StatusBar.setHidden(true);
-  	}
+  	componentWillMount() { StatusBar.setHidden(true); };
 
   	constructor(props) {
 		super(props);
@@ -45,8 +34,6 @@ export default class SettingsScreen extends React.Component {
 			modalVisible: false,
 			modalVisibleInfo: false,
 		};
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
 	};
 
 	setModalVisible(visible) {
@@ -65,48 +52,30 @@ export default class SettingsScreen extends React.Component {
 			password: this.state.password
 		})
 		if (bob) {
-				console.log(bob.data._id);
-				const res = bob.data._id;
-				console.log(res);
-				AsyncStorage.setItem('@superkey: id', res, function(err) {
-				if(err) {
-					console.log(err)
-				} else {
-				console.log("Yes")
-				component.props.navigation.navigate('AuthLoading');
-				}});
-			}
-		} else {
-			Alert.alert("Your password doesn't match");
+			AsyncStorage.setItem('@superkey: id', res, function(err) {
+				if(err) { console.log(err)} 
+				else { console.log("Yes"); component.props.navigation.navigate('AuthLoading'); }
+			});
 		}
+		} else { Alert.alert("Your password doesn't match"); }
 	}	
 	async _handleLogin() {
 		let component = this;
 		const bob = await axios.post("https://shielded-mesa-86644.herokuapp.com/login/", {
-			username: this.state.username,
-			password: this.state.password
+			username: this.state.username, password: this.state.password
 		})
 		if (bob) {
-			console.log(bob.data._id);
-			const res = bob.data._id;
-			console.log(res);
 			AsyncStorage.setItem('@superkey: id', res, function(err) {
-			if(err) {
-				console.log(err)
-			} else {
-			console.log("Yes")
-			component.props.navigation.navigate('AuthLoading');
-			}});
+				if(err) { console.log(err) } 
+				else { console.log("Yes"); component.props.navigation.navigate('AuthLoading'); }
+			});
 		}
 	}
-
 	render() {
 		const { navigate } = this.props.navigation;
 		return (
-
 // ------------------------- Background Image -------------------------
 			<ImageBackground source={require('../assets/images/gradient1.png')} style={styles.backgroundImage}>
-		
 {/* ------------------------- Page Header ------------------------- */}
 				<Header
 					leftComponent={{ icon: 'home', color: '#fff', onPress: () => navigate('Home') }}
@@ -116,10 +85,8 @@ export default class SettingsScreen extends React.Component {
 					
 				<ScrollView style={styles.container}>
 					<View style={styles.mainContainer}>
-				
 {/* ----------------------- Username input ----------------------- */}
 						<View style={styles.testContainer}>
-				
 							<View style={styles.rowForIcon}>
 								<Icon name='person' color='white'/>
 								<FormLabel labelStyle={styles.formTitle}>Username</FormLabel>
@@ -131,9 +98,7 @@ export default class SettingsScreen extends React.Component {
 								inputStyle={styles.inputStyle} 
 								value={this.state.username}  
 								onChangeText={(text) => this.setState({ username: text })} /> 
-							{/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
 						</View>
-
 {/* ----------------------- Password input ----------------------- */}
 						<View style={styles.testContainer}>
 							<View style={styles.rowForIcon}>
@@ -148,9 +113,7 @@ export default class SettingsScreen extends React.Component {
 								inputStyle={styles.inputStyle} 
 								value={this.state.password} 
 								onChangeText={(text) => this.setState({ password: text })} />
-							{/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
 						</View>
-
 {/* ----------------------- Password input ----------------------- */}
 						<View style={styles.testContainer}>
 							<View style={styles.rowForIcon}>
@@ -165,9 +128,7 @@ export default class SettingsScreen extends React.Component {
 								inputStyle={styles.inputStyle}
 								value={this.state.passwordConfirm} 
 								onChangeText={(text) => this.setState({ passwordConfirm: text })} />
-							{/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
 						</View>
-
 {/* ----------------------- Email address input ----------------------- */}
 						<View style={styles.testContainer}>
 							<View style={styles.rowForIcon}>
@@ -181,7 +142,6 @@ export default class SettingsScreen extends React.Component {
 								underlineColorAndroid="transparent"
 								inputStyle={styles.inputStyle}
 								onChangeText={(text) => this.setState({ email: text })} />
-							{/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
 						</View>
 					</View>
 {/* ----------------------- Sign up and Login Buttons ----------------------- */}
@@ -191,7 +151,6 @@ export default class SettingsScreen extends React.Component {
 								onPress={() => this._handleSignUp()}
 								icon={{name:'person-add', color:'white'}}
 								buttonStyle={styles.buttonSignUp}
-								//raised
 								title='Sign Up' />
 						</View>
 						<View>
@@ -199,7 +158,6 @@ export default class SettingsScreen extends React.Component {
 								onPress={() => this.setModalVisible(true)}
 								icon={{name:'person', color:'white'}}
 								buttonStyle={styles.buttonLogin}
-								//raised
 								title='Login' />
 						</View>
 					</View>
@@ -209,7 +167,6 @@ export default class SettingsScreen extends React.Component {
 						transparent={false}
 						visible={this.state.modalVisible}
 						onRequestClose={() => {console.log('closed');}} >
-
 						<ImageBackground source={require('../assets/images/gradient2.png')} style={styles.backgroundImage}>
 							<View>
 								<View style={styles.statusBar}>
@@ -219,7 +176,6 @@ export default class SettingsScreen extends React.Component {
 							<ScrollView style={styles.container}>
 								<View style={styles.listContainer}>
 									<View style={styles.testContainer}>
-				
 										<View style={styles.rowForIcon}>
 											<Icon name='person' color='white'/>
 											<FormLabel labelStyle={styles.formTitle}>Username</FormLabel>
@@ -231,9 +187,7 @@ export default class SettingsScreen extends React.Component {
 											inputStyle={styles.inputStyle} 
 											value={this.state.username}  
 											onChangeText={(text) => this.setState({ username: text })} /> 
-										{/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
 									</View>
-
 						{/* ----------------------- Password input ----------------------- */}
 									<View style={styles.testContainer}>
 										<View style={styles.rowForIcon}>
@@ -248,7 +202,6 @@ export default class SettingsScreen extends React.Component {
 											inputStyle={styles.inputStyle} 
 											value={this.state.password} 
 											onChangeText={(text) => this.setState({ password: text })} />
-										{/* <FormValidationMessage> {'This field is required'} </FormValidationMessage> */}
 									</View>
 								</View>
 								<View style={styles.buttonContainer}>
@@ -257,23 +210,14 @@ export default class SettingsScreen extends React.Component {
 											onPress={() => {this._handleLogin()}}
 											icon={{name:'person-add', color:'white'}}
 											buttonStyle={styles.buttonLogin}
-											//raised
-											title={ 
-												<Text style={styles.listBoxAddText}>
-													Login
-												</Text>
-											} />
+											title={ <Text style={styles.listBoxAddText}> Login </Text> } />
 									</View>
 									<View>
 										<Button
 											onPress={() => this.setModalVisible(!this.state.modalVisible)}
 											icon={{name:'person', color:'white'}}
 											buttonStyle={styles.buttonSignUp}
-											//raised
-											title={ 
-												<Text style={styles.listBoxAddText}>
-													Sign Up
-												</Text> } />
+											title={ <Text style={styles.listBoxAddText}> Sign Up </Text> } />
 									</View>
 								</View>
 							</ScrollView>
@@ -284,7 +228,6 @@ export default class SettingsScreen extends React.Component {
 						transparent={true}
 						visible={this.state.modalVisibleInfo}
 						onRequestClose={() => {console.log('closed');}}>
-
 						<ImageBackground source={require('../assets/images/gradient2.png')} style={styles.backgroundImage}>
 							<View>
 								<View style={styles.statusBar}>
@@ -346,7 +289,6 @@ export default class SettingsScreen extends React.Component {
 									onPress={() => this.setModalVisibleInfo(!this.state.modalVisibleInfo)}
 									icon={{name:'hot-tub', color:'white'}}
 									buttonStyle={styles.buttonClose}
-									//raised
 									title='Close' />
 							</View>
 						</ImageBackground>
@@ -355,38 +297,17 @@ export default class SettingsScreen extends React.Component {
 			</ImageBackground>
 		);
 	}
-	_handleGithubJoe = () => {
-		WebBrowser.openBrowserAsync('https://github.com/itsajoe');
-	};
-	_handleLinkedJoe = () => {
-		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/joseph-musser-6835ba13a/');
-	};
-	_handleGithubAusten = () => {
-		WebBrowser.openBrowserAsync('https://github.com/pritchettausten');
-	};
-	_handleLinkedAusten = () => {
-		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/austen-pritchett-02695146/');
-	};
-	_handleGithubJordan = () => {
-		WebBrowser.openBrowserAsync('https://github.com/jhiggi44');
-	};
-	_handleLinkedJordan = () => {
-		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/jordan-higgins/');
-	};
-	_handleGithubZiwei = () => {
-		WebBrowser.openBrowserAsync('https://github.com/zz0115');
-	};
-	_handleLinkedZiwei = () => {
-		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/ziwei0115/');
-	};
-	_handleGithubChase = () => {
-		WebBrowser.openBrowserAsync('https://github.com/chasemillet');
-	};
-	_handleLinkedChase = () => {
-		WebBrowser.openBrowserAsync('https://www.linkedin.com/in/chase-millet-2aa095b9/');
-	};
+	_handleGithubJoe = 		() => { WebBrowser.openBrowserAsync ( 'https://github.com/itsajoe' ); };
+	_handleLinkedJoe = 		() => { WebBrowser.openBrowserAsync ( 'https://www.linkedin.com/in/joseph-musser-6835ba13a/' ); };
+	_handleGithubAusten = 	() => { WebBrowser.openBrowserAsync ( 'https://github.com/pritchettausten' ); };
+	_handleLinkedAusten = 	() => { WebBrowser.openBrowserAsync ( 'https://www.linkedin.com/in/austen-pritchett-02695146/' ); };
+	_handleGithubJordan = 	() => { WebBrowser.openBrowserAsync ( 'https://github.com/jhiggi44' ); };
+	_handleLinkedJordan = 	() => { WebBrowser.openBrowserAsync ( 'https://www.linkedin.com/in/jordan-higgins/' ); };
+	_handleGithubZiwei = 	() => { WebBrowser.openBrowserAsync ( 'https://github.com/zz0115' ); };
+	_handleLinkedZiwei = 	() => { WebBrowser.openBrowserAsync ( 'https://www.linkedin.com/in/ziwei0115/' ); };
+	_handleGithubChase = 	() => { WebBrowser.openBrowserAsync ( 'https://github.com/chasemillet' ); };
+	_handleLinkedChase = 	() => { WebBrowser.openBrowserAsync ( 'https://www.linkedin.com/in/chase-millet-2aa095b9/' ); }; 
 }
-
 const styles = StyleSheet.create({
 	statusBar: {
         borderBottomWidth: 0,
@@ -398,7 +319,7 @@ const styles = StyleSheet.create({
     headerText: {  
         textAlign: 'center',
         color: '#fff',
-		    paddingTop: 13,
+		paddingTop: 13,
         fontSize: 20, 
         fontFamily: 'averia-serif',
     },
@@ -410,7 +331,6 @@ const styles = StyleSheet.create({
 	},
 	mainContainer: {
 		alignItems: 'center',
-		//marginHorizontal: 50,
 	},
 	buttonContainer: {
 		marginTop: 15,
@@ -471,16 +391,13 @@ const styles = StyleSheet.create({
 	modalHead: {
 		textAlign: 'center',
 		fontSize: 30,
-		borderBottomWidth: 1,
+		//borderBottomWidth: 1,
 		paddingBottom: 10
 	},
 	devLinks: {
-		//flexWrap: 'wrap', 
-		//alignItems: 'flex-start',
 		alignItems: 'center',
 		flexDirection:'row',
 		justifyContent: 'space-between',
-		//marginBottom: 5,
 		marginLeft: 10,
 		marginRight:10,
 	},
@@ -493,7 +410,6 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		textAlign: 'right',
 		margin: 5,
-		//paddingTop: 3,
 		color: '#ffffff',
 		borderBottomWidth: 1,
 		borderColor: '#ffffff'
@@ -504,5 +420,5 @@ const styles = StyleSheet.create({
         borderColor: '#f7919f',
         backgroundColor: '#d4152f',
         height: 40
-    },
+	}
 });
