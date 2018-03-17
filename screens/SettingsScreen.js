@@ -78,7 +78,7 @@ export default class SettingsScreen extends React.Component {
 			<ImageBackground source={require('../assets/images/gradient1.png')} style={styles.backgroundImage}>
 {/* ------------------------- Page Header ------------------------- */}
 				<Header
-					leftComponent={{ icon: 'home', color: '#fff', onPress: () => navigate('Home') }}
+					//leftComponent={{ icon: 'home', color: '#fff', onPress: () => navigate('Home') }}
 					centerComponent={{ text: 'Login', style: styles.headerText }}
 					outerContainerStyles={styles.statusBar}
 					rightComponent={{ icon: 'info', color: '#fff', onPress: () => this.setModalVisibleInfo(true) }} />
