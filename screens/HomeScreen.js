@@ -23,8 +23,9 @@ import axios from 'axios';
 import StoreButton from '../components/StoreButton'
 
 export default class HomeScreen extends React.Component {
+
     static navigationOptions = { header: null };
-	
+
 	async componentWillMount() {
 		StatusBar.setHidden(true);
         const bob = await AsyncStorage.getItem('@superkey: id');
@@ -62,6 +63,7 @@ export default class HomeScreen extends React.Component {
     
     newList(visible) {
         let self = this;
+
         axios.post("https://shielded-mesa-86644.herokuapp.com/new/list/" + this.state.id, { store: this.state.store })
             .then(function(data) { 
                 if (data) {
@@ -69,13 +71,16 @@ export default class HomeScreen extends React.Component {
                     self.setState({ modalVisible: visible, store: "" });  
                 }  
             })
+
     };
 
     async _handleLogin() {
+        this.props.navigation.navigate("Auth");
 		let component = this;
 	   	const bob = await AsyncStorage.removeItem('@superkey: id');
 		component.props.navigation.navigate('Auth');
 	};
+
 
     render() {
         const { navigate } = this.props.navigation;

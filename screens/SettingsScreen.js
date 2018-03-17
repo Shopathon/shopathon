@@ -11,7 +11,8 @@ import {
     StatusBar,
 	KeyboardAvoidingView,
 	AsyncStorage,
-	Modal
+	Modal,
+	Alert
 } from 'react-native';
 import SwitchNavigator from "../App";
 import { MonoText } from '../components/StyledText';
@@ -52,10 +53,13 @@ export default class SettingsScreen extends React.Component {
 			password: this.state.password
 		})
 		if (bob) {
+			const res = bob.data._id;
 			AsyncStorage.setItem('@superkey: id', res, function(err) {
 				if(err) { console.log(err)} 
 				else { console.log("Yes"); component.props.navigation.navigate('AuthLoading'); }
 			});
+				
+			
 		}
 		} else { Alert.alert("Your password doesn't match"); }
 	}	
@@ -65,10 +69,14 @@ export default class SettingsScreen extends React.Component {
 			username: this.state.username, password: this.state.password
 		})
 		if (bob) {
+			const res = bob.data._id;
 			AsyncStorage.setItem('@superkey: id', res, function(err) {
 				if(err) { console.log(err) } 
 				else { console.log("Yes"); component.props.navigation.navigate('AuthLoading'); }
 			});
+
+			
+
 		}
 	}
 	render() {
