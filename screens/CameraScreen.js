@@ -127,6 +127,7 @@ export default class CameraScreen extends React.Component {
 		);
 	}
 
+
 	renderLandmarksOfFace(face) {
 		const renderLandmark = position =>
 		position && (
@@ -275,6 +276,7 @@ export default class CameraScreen extends React.Component {
 		return <View style={styles.container}>{content}</View>;
 	}
 };
+
 
 const styles = StyleSheet.create({
 	container: {
